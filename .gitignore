@@ -1,5 +1,6 @@
+db.php
 /vendor
 assets/
 *.lock
 *.sql
-db.php
+
