@@ -2,4 +2,4 @@
 assets/
 *.lock
 *.sql
-/config/db.php
+/db.php
