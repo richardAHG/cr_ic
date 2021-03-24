@@ -63,4 +63,19 @@ class DiaryQuery
             ->andWhere(['em.event_id' => $event_id])
             ->all();
     }
+
+    public static function getPresentations($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['p.id', 'p.name'])
+            ->from('presentations p')
+            ->join(
+                'INNER JOIN',
+                'events e',
+                'p.event_id =e.id'
+            )
+            ->where(['e.condition' => 1])
+            ->andWhere(['e.id' => $event_id])
+            ->all();
+    }
 }

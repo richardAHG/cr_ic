@@ -79,6 +79,7 @@ class IndexAction extends Action
                 // print_r($value); die();
                 $speaker = DiaryQuery::getSpeaker($item['id']);
                 $moderator = DiaryQuery::getModerator($item['id']);
+                $presentations = DiaryQuery::getPresentations($item['id']);
 
                 $events[] = [
                     'id' => $item['id'],
@@ -90,12 +91,12 @@ class IndexAction extends Action
                     'city' => $item['city'],
                     'type_id' => $item['type_id'],
                     'diary_id' => $item['diary_id'],
+                    'presentations' => $presentations,
                     'speakers' => $speaker,
                     'moderator' => $moderator
                 ];
             }
             $data[$key]['events'] = $events;
-            
         }
         return $data;
         print_r(json_encode($data));
