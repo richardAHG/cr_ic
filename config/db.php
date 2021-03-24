@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;port=3306;dbname=db_conference',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=165.232.148.14;port=4417;dbname=db_conference',
+    'username' => 'usrdb',
+    'password' => 'w(6^hc/{Dcn5Be%w',
     'charset' => 'utf8',
     // 'on afterOpen' => function ($event) {
     //     $event->sender->createCommand("SET timezone='America/Lima';")->execute();

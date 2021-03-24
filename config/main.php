@@ -8,7 +8,7 @@ $config=[
         '@bower' => '@vendor/bower-asset'
     ],
     'components'=>[
-        'db'=>require __DIR__ . '../db.php',
+        'db'=>require __DIR__ . '/db.php',
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,

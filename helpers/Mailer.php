@@ -26,10 +26,10 @@ class Mailer
                     'allow_self_signed' => true
                 )
             );
-            $this->mail->Username = 'vilmaob845@gmail.com';
-            $this->mail->Password = 'ob.vilma4252';
+            $this->mail->Username = 'ranthonyhg@gmail.com';
+            $this->mail->Password = '47960299G';
             $this->mail->CharSet = PHPMailer::CHARSET_UTF8;
-            $this->mail->setFrom('vilmaob845@gmail.com', 'CREDICORP');
+            $this->mail->setFrom('richard@cuborojo.com', 'CREDICORP');
         } catch (Exception $ex) {
             echo $this->mail->ErrorInfo;
         }
