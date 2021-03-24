@@ -1,3 +1,4 @@
 /vendor
-assets/*
+assets/
 *.lock
+*.sql
