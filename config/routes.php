@@ -14,7 +14,7 @@ return [
         'class' => 'yii\rest\UrlRule',
         'pluralize' => false,
         'controller' => [
-            'correo' => 'correos'
+            'email' => 'emails'
         ],
         'extraPatterns' => [
             'POST proximos-eventos' => 'proximosEventos',

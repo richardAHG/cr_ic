@@ -1,11 +1,12 @@
 <?php
 
-namespace app\controllers\correo;
+namespace app\controllers\email;
 
-use app\helpers\Date;
 use app\helpers\Mailer;
 use app\helpers\Response;
+use app\models\UsersModel;
 use app\models\UsuariosModel;
+use app\rest\Action;
 use Yii;
 use yii\base\Model;
 use yii\web\ServerErrorHttpException;
@@ -14,7 +15,7 @@ use yii\web\BadRequestHttpException;
 /**
  * @author Richard Huaman <richard21hg92@gmail.com>
  */
-class ConsultarParticipacionAction extends Action
+class ProximosEventosAction extends Action
 {
     /**
      * @var string the scenario to be assigned to the new model before it is validated and saved.
@@ -44,8 +45,8 @@ class ConsultarParticipacionAction extends Action
 
         // $requestParams = Yii::$app->getRequest()->getBodyParams();
 
-        $users = UsuariosModel::find()
-            ->where(['estado' => true])
+        $users = UsersModel::find()
+            ->where(['condition' => 1])
             ->all();
 
             // print_r($users); die();
@@ -56,23 +57,23 @@ class ConsultarParticipacionAction extends Action
         foreach ($users as $user) {
             
             //enviar email, contiene nueva clave y link de logue
-        self::envioCorreo($user['email'], $user['nombre'],'Confirmar su participación');
+        self::envioCorreo($user['email'], $user['name'],'Informacion de proximos eventos');
 
         }
 
         //enviar email, contiene nueva clave y link de logue
         // self::envioCorreo($userModel->email, $token, $userModel->nombre);
-        Response::JSON(200, 'Correo enviado');
+        Response::JSON(200, 'Clave enviada');
     }
 
     public static function envioCorreo($email, $nombreUsuairo,$subject)
     {
         $mail = new Mailer();
         $params = [
-            "ruta" => 'www.investor-conference/consultar-participacion',
+            "ruta" => 'www.investor-conference/proximos-eventos',
             'nombreUsuario' => $nombreUsuairo
         ];
-        $body = Yii::$app->view->renderFile("{$mail->path}/consultar-participacion.php", compact("params"));
+        $body = Yii::$app->view->renderFile("{$mail->path}/proximos-eventos.php", compact("params"));
         $mail->send($email, $subject, $body);
     }
 }

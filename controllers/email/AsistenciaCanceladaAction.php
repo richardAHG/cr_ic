@@ -1,11 +1,12 @@
 <?php
 
-namespace app\controllers\correo;
+namespace app\controllers\email;
 
-use app\helpers\Date;
 use app\helpers\Mailer;
 use app\helpers\Response;
+use app\models\UsersModel;
 use app\models\UsuariosModel;
+use app\rest\Action;
 use Yii;
 use yii\base\Model;
 use yii\web\ServerErrorHttpException;
@@ -14,7 +15,7 @@ use yii\web\BadRequestHttpException;
 /**
  * @author Richard Huaman <richard21hg92@gmail.com>
  */
-class AsistenciaConfirmadaAction extends Action
+class AsistenciaCanceladaAction extends Action
 {
     /**
      * @var string the scenario to be assigned to the new model before it is validated and saved.
@@ -44,24 +45,18 @@ class AsistenciaConfirmadaAction extends Action
 
         // $requestParams = Yii::$app->getRequest()->getBodyParams();
 
-        $users = UsuariosModel::find()
-            ->where(['estado' => true])
+        $users = UsersModel::find()
+            ->where(['condition' => 1])
             ->all();
 
-            // print_r($users); die();
         if (!$users) {
             throw new BadRequestHttpException("No existe usuarios");
         }
-
+     
         foreach ($users as $user) {
-            
-            //enviar email, contiene nueva clave y link de logueo
-        self::envioCorreo($user['email'], $user['nombre'],'Participación Confirmada');
-
+            self::envioCorreo($user['email'], $user['name'],'Participacion cancelada');
         }
-
-        //enviar email, contiene nueva clave y link de logue
-        // self::envioCorreo($userModel->email, $token, $userModel->nombre);
+        
         Response::JSON(200, 'Correo enviado');
     }
 
@@ -69,10 +64,10 @@ class AsistenciaConfirmadaAction extends Action
     {
         $mail = new Mailer();
         $params = [
-            "ruta" => 'www.investor-conference/asistencia-confirmada',
+            "ruta" => 'www.investor-conference/asistencia-cancelada',
             'nombreUsuario' => $nombreUsuairo
         ];
-        $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-confirmada.php", compact("params"));
+        $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada.php", compact("params"));
         $mail->send($email, $subject, $body);
     }
 }
