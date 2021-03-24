@@ -1,0 +1,17 @@
+{
+    "name": "user/conference",
+    "description": "prueba",
+    "require": {
+        "yiisoft/yii2": "2.0.41.1",
+        "phpmailer/phpmailer": "^6.3"
+    },
+    "require-dev": {
+        "yiisoft/yii2-gii": "^2.2"
+    },
+    "authors": [
+        {
+            "name": "Richard Huáman Gómez",
+            "email": "richard21hg92@gmail.com"
+        }
+    ]
+}
