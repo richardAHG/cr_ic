@@ -81,10 +81,13 @@ class DiaryQuery
 
     public static function getByUser($token)
     {
-        $sql = "SELECT e.*,d.date as diary_date,date_string,date_string_en from user_events ue
+        $sql = "SELECT e.*,d.date as diary_date,date_string,date_string_en,date_string_large,date_string_large_en, 
+            p2.name as type
+            from user_events ue
             inner join events e on ue.event_id =e.id 
             inner join diary d on d.id =e.diary_id 
             inner join users u on u.id =ue.user_id 
+            inner join parameters p2 on p2.value =e.type_id and p2.`group` ='TYPE_MEET'
             where u.token = :token";
         return Yii::$app->db->createCommand($sql)->bindParam(':token', $token)->queryAll();
     }

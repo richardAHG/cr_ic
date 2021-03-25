@@ -59,7 +59,9 @@ class IndexcompleteAction extends Action
                 "id" => $value['id'],
                 "date" => $value['date'],
                 "date_string" => $value['date_string'],
-                "date_string_en" => $value['date_string_en']
+                "date_string_en" => $value['date_string_en'],
+                "date_string_large" => $value['date_string_large'],
+                "date_string_large_en" => $value['date_string_large_en']
             ];
             //obtengo evento por id agenda
             $evento = EventsModel::find()

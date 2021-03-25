@@ -12,6 +12,8 @@ use Yii;
  * @property string $date_string
  * @property string $date_string_en
  * @property int|null $condition
+ * @property string|null $date_string_large
+ * @property string|null $date_string_large_en
  */
 class DiaryModel extends \yii\db\ActiveRecord
 {
@@ -33,6 +35,7 @@ class DiaryModel extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['condition'], 'integer'],
             [['date_string', 'date_string_en'], 'string', 'max' => 60],
+            [['date_string_large', 'date_string_large_en'], 'string', 'max' => 80],
         ];
     }
 
@@ -47,6 +50,8 @@ class DiaryModel extends \yii\db\ActiveRecord
             'date_string' => 'Date String',
             'date_string_en' => 'Date String En',
             'condition' => 'Condition',
+            'date_string_large' => 'Date String Large',
+            'date_string_large_en' => 'Date String Large En',
         ];
     }
 }
