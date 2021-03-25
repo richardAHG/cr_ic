@@ -78,4 +78,14 @@ class DiaryQuery
             ->andWhere(['e.id' => $event_id])
             ->all();
     }
+
+    public static function getByUser($token)
+    {
+        $sql = "SELECT e.*,d.date as diary_date,date_string,date_string_en from user_events ue
+            inner join events e on ue.event_id =e.id 
+            inner join diary d on d.id =e.diary_id 
+            inner join users u on u.id =ue.user_id 
+            where u.token = :token";
+        return Yii::$app->db->createCommand($sql)->bindParam(':token', $token)->queryAll();
+    }
 }

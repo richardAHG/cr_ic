@@ -14,8 +14,12 @@ class DiarysController extends ActiveController
         $actions['update']['class'] = 'app\controllers\diary\UpdateAction';
         $actions['create']['class'] = 'app\controllers\diary\CreateAction';
 
-         $actions['completex'] = [
+        $actions['complete'] = [
             'class' => 'app\controllers\diary\IndexcompleteAction',
+            'modelClass' => 'app\models\DiaryModel'
+        ];
+        $actions['byUser'] = [
+            'class' => 'app\controllers\diary\ViewCompleteAction',
             'modelClass' => 'app\models\DiaryModel'
         ];
         

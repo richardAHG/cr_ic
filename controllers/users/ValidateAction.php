@@ -59,20 +59,19 @@ class ValidateAction extends Action
         }
 
         $token = Utils::generateToken();
-        $requestParams['token'] = $token;
+        $user->token = $token;
         // $requestParams['sent'] = 1;
 
-        $model->load($requestParams, '');
-        if (!$model->save()) {
+        if (!$user->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
 
         $data = [
             'token' => $token,
-            'user_id' => $model->id,
-            'name'=>$model->name
+            'user_id' => $user->id,
+            'name'=>$user->name
         ];
 
-        return Response::JSON(200, 'Usuario Registrado', $data);
+        return Response::JSON(200, 'Usuario Permitido', $data);
     }
 }

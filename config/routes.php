@@ -28,7 +28,8 @@ return [
             'diary' => 'diarys'
         ],
         'extraPatterns' => [
-            'GET complete' => 'completex',
+            'GET complete' => 'complete',
+            'GET user' => 'byUser',
         ],
     ],
     [
