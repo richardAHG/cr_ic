@@ -69,7 +69,8 @@ class ValidateAction extends Action
         $data = [
             'token' => $token,
             'user_id' => $user->id,
-            'name'=>$user->name
+            'name'=>$user->name,
+            'company'=>$user->name
         ];
 
         return Response::JSON(200, 'Usuario Permitido', $data);
