@@ -44,36 +44,15 @@ class CreateAction extends Action
         ]);
         $requestParams = Yii::$app->getRequest()->getBodyParams();
         // validacion de nombre usuario y email unico
-        // UsuarioQuery::validateEmailDuplicate(
-        //     $requestParams['email']
-        // );
-        //verificar validez de usuario
-        $user = UsersModel::find()
-            ->where(
-                "email=:email",
-                [":email" => $requestParams['email']]
-            )
-            ->one();
-
-        if (!$user) {
-            throw new BadRequestHttpException("You do not have permission to access the conference");
-        }
-
-        $token = Utils::generateToken();
-        $requestParams['token'] = $token;
-        // $requestParams['sent'] = 1;
+        UsuarioQuery::validateEmailDuplicate(
+            $requestParams['email']
+        );
 
         $model->load($requestParams, '');
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
 
-        $data = [
-            'token' => $token,
-            'user_id' => $model->id,
-            'name'=>$model->name
-        ];
-
-        return Response::JSON(200, 'Usuario Registrado', $data);
+        return $model;
     }
 }
