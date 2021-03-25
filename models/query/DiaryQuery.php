@@ -8,19 +8,26 @@ class DiaryQuery
 {
     public static function getAllComplete()
     {
-        $sql = "SELECT d.id,d.date,d.date_string ,d.date_string_en ,
-        e2.id as event_id,e2.title ,e2.title_en ,e2.description ,e2.`date`as dateevent,e2.city,e2.diary_id ,e2.type_id ,
-        p4.name as typemeet,
-        es.id as speaker_id ,p2.name as speaker,p2.photo as photospeaker,
-        em.id as moderator_id ,p3.name as moderator,p3.photo as photomoderator
-        FROM diary d
-        inner join events e2 on d.id = e2.diary_id 
-        inner join events_speakers es on e2.id =es.event_id 
-        inner join participants p2 on p2.id =es.participant_id 
-        inner join events_moderators em on e2.id =em.event_id
-        inner join participants p3 on p3.id =em.participant_id
-        inner join parameters p4 on e2.type_id =p4.value and p4.`group` ='TYPE_MEET'
-        ORDER by d.id ,e2.id";
+        // $sql = "SELECT d.id,d.date,d.date_string ,d.date_string_en ,
+        // e2.id as event_id,e2.title ,e2.title_en ,e2.description ,e2.`date`as dateevent,e2.city,e2.diary_id ,e2.type_id ,
+        // p4.name as typemeet,
+        // es.id as speaker_id ,p2.name as speaker,p2.photo as photospeaker,
+        // em.id as moderator_id ,p3.name as moderator,p3.photo as photomoderator
+        // FROM diary d
+        // inner join events e2 on d.id = e2.diary_id 
+        // inner join events_speakers es on e2.id =es.event_id 
+        // inner join participants p2 on p2.id =es.participant_id 
+        // inner join events_moderators em on e2.id =em.event_id
+        // inner join participants p3 on p3.id =em.participant_id
+        // inner join parameters p4 on e2.type_id =p4.value and p4.`group` ='TYPE_MEET'
+        // ORDER by d.id ,e2.id";
+        $sql="SELECT d.id,d.date,d.date_string ,d.date_string_en ,date_string_large,date_string_large_en,
+                e2.id as event_id,e2.title ,e2.title_en ,e2.description ,e2.`date`as dateevent,e2.city,e2.diary_id ,e2.type_id ,
+                p4.name as type
+                FROM diary d
+                inner join events e2 on d.id = e2.diary_id 
+                inner join parameters p4 on e2.type_id =p4.value and p4.`group` ='TYPE_MEET'
+                ORDER by d.id ,e2.id";
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
 
