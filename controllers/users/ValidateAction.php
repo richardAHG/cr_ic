@@ -15,7 +15,7 @@ use yii\web\ServerErrorHttpException;
 /**
  * @author Richard Huaman <richard21hg92@gmail.com>
  */
-class CreateAction extends Action
+class ValidateAction extends Action
 {
     /**
      * @var string the scenario to be assigned to the new model before it is validated and saved.

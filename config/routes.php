@@ -5,7 +5,6 @@ return [
         'class' => 'yii\rest\UrlRule',
         'pluralize' => false,
         'controller' => [
-            'user' => 'users',
             'participant' => 'participants'
         ]
     ],
@@ -30,6 +29,16 @@ return [
         ],
         'extraPatterns' => [
             'GET complete' => 'completex',
+        ],
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
+        'controller' => [
+            'user' => 'users'
+        ],
+        'extraPatterns' => [
+            'POST validate' => 'validate',
         ],
     ],
     [

@@ -6,7 +6,7 @@ use app\rest\ActiveController;
 
 class DiarysController extends ActiveController
 {
-    public $modelClass ='app\models\DiaryModel';
+    public $modelClass ='app\models\custom\DiarycustomModel';
 
     public function actions()
     {

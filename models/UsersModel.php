@@ -11,8 +11,10 @@ use Yii;
  * @property string $name
  * @property string $last_name
  * @property string $email
- * @property int $nationality_id
+ * @property int|null $nationality_id
  * @property int|null $condition
+ * @property int|null $sent
+ * @property string $token
  */
 class UsersModel extends \yii\db\ActiveRecord
 {
@@ -30,8 +32,9 @@ class UsersModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'last_name', 'email', 'nationality_id'], 'required'],
-            [['nationality_id', 'condition'], 'integer'],
+            [['name', 'last_name', 'email', 'token'], 'required'],
+            [['nationality_id', 'condition', 'sent'], 'integer'],
+            [['token'], 'string'],
             [['name', 'last_name', 'email'], 'string', 'max' => 80],
         ];
     }
@@ -48,6 +51,8 @@ class UsersModel extends \yii\db\ActiveRecord
             'email' => 'Email',
             'nationality_id' => 'Nationality ID',
             'condition' => 'Condition',
+            'sent' => 'Sent',
+            'token' => 'Token',
         ];
     }
 }

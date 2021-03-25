@@ -13,6 +13,11 @@ class UsersController extends ActiveController
         $actions=parent::actions();
         $actions['update']['class'] = 'app\controllers\users\UpdateAction';
         $actions['create']['class'] = 'app\controllers\users\CreateAction';
+        
+        $actions['validate'] = [
+            'class' => 'app\controllers\users\ValidateAction',
+            'modelClass' => 'app\models\UsersModel'
+        ];
 
         return $actions;
     }
