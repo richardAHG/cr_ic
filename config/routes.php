@@ -6,8 +6,7 @@ return [
         'pluralize' => false,
         'controller' => [
             'user' => 'users',
-            'diary'=> 'diary',
-            'participant'=> 'participants',
+            'participant' => 'participants'
         ]
     ],
     [
@@ -21,6 +20,16 @@ return [
             'POST consultar-participacion' => 'consultarParticipacion',
             'POST asistencia-cancelada' => 'asistenciaCancelada',
             'POST asistencia-confirmada' => 'asistenciaConfirmada',
+        ],
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
+        'controller' => [
+            'diary' => 'diarys'
+        ],
+        'extraPatterns' => [
+            'GET complete' => 'completex',
         ],
     ],
     [

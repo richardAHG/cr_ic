@@ -14,7 +14,7 @@ use yii\data\ActiveDataProvider;
  * 
  * @author Richard Huaman <richard21hg92@gmail.com>
  */
-class IndexAction extends Action
+class IndexcompleteAction extends Action
 {
     /**
      * @return ActiveDataProvider

@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\rest\ActiveController;
 
-class DiaryController extends ActiveController
+class DiarysController extends ActiveController
 {
     public $modelClass ='app\models\DiaryModel';
 
@@ -13,7 +13,11 @@ class DiaryController extends ActiveController
         $actions=parent::actions();
         $actions['update']['class'] = 'app\controllers\diary\UpdateAction';
         $actions['create']['class'] = 'app\controllers\diary\CreateAction';
-        $actions['index']['class'] = 'app\controllers\diary\IndexAction';
+
+         $actions['completex'] = [
+            'class' => 'app\controllers\diary\IndexcompleteAction',
+            'modelClass' => 'app\models\DiaryModel'
+        ];
         
         return $actions;
     }
