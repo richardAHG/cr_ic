@@ -2,14 +2,10 @@
 
 namespace app\controllers\users;
 
-use app\helpers\Response;
-use app\helpers\Utils;
 use app\models\query\UsuarioQuery;
-use app\models\UsersModel;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;
-use yii\web\BadRequestHttpException;
 use yii\web\ServerErrorHttpException;
 
 /**

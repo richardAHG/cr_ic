@@ -2,7 +2,6 @@
 
 namespace app\controllers\diary;
 
-use app\models\query\UsuarioQuery;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;

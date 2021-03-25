@@ -5,7 +5,6 @@ namespace app\controllers\email;
 use app\helpers\Mailer;
 use app\helpers\Response;
 use app\models\UsersModel;
-use app\models\UsuariosModel;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;
