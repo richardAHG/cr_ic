@@ -40,6 +40,7 @@ return [
         ],
         'extraPatterns' => [
             'POST validate' => 'validate',
+            'POST save-event' => 'saveEvent'
         ],
     ],
     [

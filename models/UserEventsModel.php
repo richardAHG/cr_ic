@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "user_events".
  *
  * @property int $id
- * @property int $participant_id
+ * @property int $user_id
  * @property int $event_id
  * @property int|null $condition
  */
@@ -28,8 +28,8 @@ class UserEventsModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['participant_id', 'event_id'], 'required'],
-            [['participant_id', 'event_id', 'condition'], 'integer'],
+            [['user_id', 'event_id'], 'required'],
+            [['user_id', 'event_id', 'condition'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class UserEventsModel extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'participant_id' => 'Participant ID',
+            'user_id' => 'User ID',
             'event_id' => 'Event ID',
             'condition' => 'Condition',
         ];

@@ -21,7 +21,7 @@ class DiaryQuery
         // inner join participants p3 on p3.id =em.participant_id
         // inner join parameters p4 on e2.type_id =p4.value and p4.`group` ='TYPE_MEET'
         // ORDER by d.id ,e2.id";
-        $sql="SELECT d.id,d.date,d.date_string ,d.date_string_en ,date_string_large,date_string_large_en,
+        $sql = "SELECT d.id,d.date,d.date_string ,d.date_string_en ,date_string_large,date_string_large_en,
                 e2.id as event_id,e2.title ,e2.title_en ,e2.description ,e2.`date`as dateevent,e2.city,e2.diary_id ,e2.type_id ,
                 p4.name as type
                 FROM diary d
@@ -95,7 +95,58 @@ class DiaryQuery
             inner join diary d on d.id =e.diary_id 
             inner join users u on u.id =ue.user_id 
             inner join parameters p2 on p2.value =e.type_id and p2.`group` ='TYPE_MEET'
-            where u.token = :token";
+            where u.token = :token and token<>''";
         return Yii::$app->db->createCommand($sql)->bindParam(':token', $token)->queryAll();
+    }
+
+    public static function getDiaryByUser($token)
+    {
+        //agenda del usuario
+        $agenda = self::getByUser($token);
+        $data = [];
+        $events = [];
+
+        foreach ($agenda as $key => $value) {
+            // print_r($value); die();
+            [$type, $type_en] = explode('|', $value['type']);
+            $data[$key] = [
+                "id" => $value['diary_id'],
+                "date" => $value['diary_date'],
+                "date_string" => $value['date_string'],
+                "date_string_en" => $value['date_string_en'],
+                "date_string_large" => $value['date_string_large'],
+                "date_string_large_en" => $value['date_string_large_en']
+            ];
+
+            $speaker = self::getSpeaker($value['id']);
+            $moderator = self::getModerator($value['id']);
+            $presentations = self::getPresentations($value['id']);
+
+            $events[] = [
+                'id' => $value['id'],
+                'title' => $value['title'],
+                'title_en' => $value['title_en'],
+                'description' => $value['description'],
+                'date' => $value['date'],
+                'city' => $value['city'],
+                'city' => $value['city'],
+                'type_id' => $value['type_id'],
+                'type' => $type,
+                'type_en' => $type_en,
+                'diary_id' => $value['diary_id'],
+                'presentations' => $presentations,
+                'speakers' => $speaker,
+                'moderator' => $moderator
+            ];
+
+            // $event = EventsModel::findOne([
+            //     'condition' => 1,
+            //     'id' => $value['event_id']
+            // ]);
+            // $events[]=$event;
+            $data[$key]['event'] = $events;
+            $events = [];
+        }
+        return $data;
     }
 }

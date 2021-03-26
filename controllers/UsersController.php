@@ -19,6 +19,11 @@ class UsersController extends ActiveController
             'modelClass' => 'app\models\UsersModel'
         ];
 
+        $actions['saveEvent'] = [
+            'class' => 'app\controllers\users\events\CreateAction',
+            'modelClass' => 'app\models\UserEventsModel'
+        ];
+
         return $actions;
     }
 }

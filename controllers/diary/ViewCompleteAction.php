@@ -48,52 +48,6 @@ class ViewCompleteAction extends Action
         //     ]);
 
         //agenda del usuario
-        $agenda = DiaryQuery::getByUser($requestParams['token']);
-        // print_r($agenda); die();
-        $data = [];
-        $events = [];
-
-        foreach ($agenda as $key => $value) {
-            // print_r($value); die();
-            [$type, $type_en] = explode('|', $value['type']);
-            $data[$key] = [
-                "id" => $value['diary_id'],
-                "date" => $value['diary_date'],
-                "date_string" => $value['date_string'],
-                "date_string_en" => $value['date_string_en'],
-                "date_string_large" => $value['date_string_large'],
-                "date_string_large_en" => $value['date_string_large_en']
-            ];
-
-            $speaker = DiaryQuery::getSpeaker($value['id']);
-            $moderator = DiaryQuery::getModerator($value['id']);
-            $presentations = DiaryQuery::getPresentations($value['id']);
-
-            $events[] = [
-                'id' => $value['id'],
-                'title' => $value['title'],
-                'title_en' => $value['title_en'],
-                'description' => $value['description'],
-                'date' => $value['date'],
-                'city' => $value['city'],
-                'city' => $value['city'],
-                'type_id' => $value['type_id'],
-                'type' => $type,
-                'type_en' => $type_en,
-                'diary_id' => $value['diary_id'],
-                'presentations' => $presentations,
-                'speakers' => $speaker,
-                'moderator' => $moderator
-            ];
-
-            // $event = EventsModel::findOne([
-            //     'condition' => 1,
-            //     'id' => $value['event_id']
-            // ]);
-            // $events[]=$event;
-            $data[$key]['event'] = $events;
-            $events = [];
-        }
-        return $data;
+        return DiaryQuery::getDiaryByUser($requestParams['token']);
     }
 }
