@@ -218,15 +218,11 @@
                                                                                                                                 <?php
                                                                                                                                 $speaker = [];
                                                                                                                                 foreach ($params['data'] as $key => $row) {
-                                                                                                                                    // print_r($row); die(); 
                                                                                                                                     $row['date_string'];
                                                                                                                                     foreach ($row['event'] as $value) {
-                                                                                                                                        // print_r($value);
-                                                                                                                                        // die();
                                                                                                                                         $value['type'];
                                                                                                                                         $value['title'];
                                                                                                                                         foreach ($value['speakers'] as $item) {
-                                                                                                                                            // print_r($item); die();        
                                                                                                                                             $speaker[] = $item['name'];
                                                                                                                                         }
                                                                                                                                         $date=substr($value['date'],11);
@@ -244,7 +240,6 @@
                                                                                                                                     ";
                                                                                                                                     $speaker=[];
                                                                                                                                 }
-                                                                                                                                die();
                                                                                                                                 ?>
                                                                                                                             </span>
                                                                                                                         </div>
