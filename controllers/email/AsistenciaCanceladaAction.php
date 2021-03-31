@@ -55,8 +55,8 @@ class AsistenciaCanceladaAction extends Action
         foreach ($users as $user) {
             self::envioCorreo($user['email'], $user['name'], 'Participacion cancelada');
         }
-
-        Response::JSON(200, 'Correo enviado');
+        return false;
+        // Response::JSON(200, 'Correo enviado');
     }
 
     public static function envioCorreo($email, $nombreUsuairo, $subject)
