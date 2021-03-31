@@ -2,8 +2,10 @@
 
 namespace app\controllers\users;
 
+use app\helpers\Response;
 use app\helpers\Utils;
 use app\models\query\UsuarioQuery;
+use app\models\UsersModel;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;
@@ -41,10 +43,13 @@ class CreateAction extends Action
         ]);
         $requestParams = Yii::$app->getRequest()->getBodyParams();
         // validacion de nombre usuario y email unico
-        UsuarioQuery::validateEmailDuplicate(
+        $exists = UsuarioQuery::validateEmailDuplicate(
             $requestParams['email']
         );
-        
+        if ($exists) {
+            $user=UsersModel::find()->where(['email' => $requestParams['email']])->one();
+            Response::JSON(201,"Ud. ya se encuentra registrado",$user);
+        }
         $token = Utils::generateToken();
         $model->token = $token;
 
@@ -52,7 +57,6 @@ class CreateAction extends Action
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-
-        return $model;
+        Response::JSON(200,"Registro exitoso",$model);
     }
 }

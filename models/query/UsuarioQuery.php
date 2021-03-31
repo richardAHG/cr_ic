@@ -42,7 +42,8 @@ class UsuarioQuery
         $rpta = $usuarioModel->one();
 
         if ($rpta) {
-            throw new BadRequestHttpException('El email ya existe, ingrese otros datos');
+            // throw new BadRequestHttpException('El email ya existe, ingrese otros datos');
+            return true;
         }
     }
 
