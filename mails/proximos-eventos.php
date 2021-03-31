@@ -163,7 +163,7 @@
                                                                             <table cellspacing="0" cellpadding="0" border="0" align="center" class="bmeButton" style="border-collapse: separate;">
                                                                                <tbody>
                                                                                   <tr>
-                                                                                     <td class="bmeButtonText" style="border-radius: 0px; border-width: 1px; border-style: solid; border-color: transparent; background-color: rgb(179, 56, 40); text-align: center; padding: 10px 40px; font-weight: bold; word-break: break-word; border-collapse: separate;"><span style="font-family:Arial, Verdana; font-size:14px;color:#FFFFFF;"><a target="_blank" style="color:#FFFFFF;text-decoration:none;">Asisteré</a></span></td>
+                                                                                     <td class="bmeButtonText" style="border-radius: 0px; border-width: 1px; border-style: solid; border-color: transparent; background-color: rgb(179, 56, 40); text-align: center; padding: 10px 40px; font-weight: bold; word-break: break-word; border-collapse: separate;"><span style="font-family:Arial, Verdana; font-size:14px;color:#FFFFFF;"><a href="https://credicorpcapitalconference.web.app/register" target="_blank" style="color:#FFFFFF;text-decoration:none;">Asisteré</a></span></td>
                                                                                   </tr>
                                                                                </tbody>
                                                                             </table>

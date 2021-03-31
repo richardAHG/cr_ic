@@ -54,7 +54,7 @@ class ViewCompleteAction extends Action
         //     ->where(['condition' => 1])
         //     ->andWhere(['in', 'id', $ids])
         //     ->all();
-        $evento=EventsQuery::getEvent($ids);
+        $evento=EventsQuery::getEventById($ids);
         return EventsQuery::getEventsByIds($evento);
     }
 }
