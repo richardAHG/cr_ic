@@ -45,7 +45,7 @@ class ProximosEventosAction extends Action
         // $requestParams = Yii::$app->getRequest()->getBodyParams();
 
         $users = UsersModel::find()
-            ->where(['condition' => 1])
+            ->where(['condition' => 1, 'sent' => 1])
             ->all();
 
         // print_r($users); die();

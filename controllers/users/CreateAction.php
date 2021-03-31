@@ -47,16 +47,16 @@ class CreateAction extends Action
             $requestParams['email']
         );
         if ($exists) {
-            $user=UsersModel::find()->where(['email' => $requestParams['email']])->one();
-            Response::JSON(201,"Usted ya se encuentra registrado",$user);
+            $user = UsersModel::find()->where(['email' => $requestParams['email']])->one();
+            Response::JSON(201, "Usted ya se encuentra registrado", $user);
         }
         $token = Utils::generateToken();
         $model->token = $token;
-
+        $model->sent = 1;
         $model->load($requestParams, '');
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        Response::JSON(200,"Usted se ha registrado correctamente",$model);
+        Response::JSON(200, "Usted se ha registrado correctamente", $model);
     }
 }
