@@ -27,10 +27,10 @@ class EventsQuery
         $eventos = [];
         foreach ($events as $key => $val) {
             $date = new DateTime($val["date"]);
-            $presentations = DiaryQuery::getPresentations($val['id']);
-            $moderator = DiaryQuery::getModerator($val['id']);
-            $speaker = DiaryQuery::getSpeaker($val['id']);
-            [$type,$type_en]=explode("|",$val['type_event']);
+            $presentations = self::getPresentations($val['id']);
+            $moderator = self::getModerator($val['id']);
+            $speaker = self::getSpeaker($val['id']);
+            [$type, $type_en] = explode("|", $val['type_event']);
             $eventoformateado = [
                 "id" => $val["id"],
                 "title" => $val["title"],
@@ -69,7 +69,7 @@ class EventsQuery
         return $data;
     }
 
-    public static function getEventById($ids = false)
+    public static function getEventById($ids)
     {
         return (new \yii\db\Query())
             ->select([
@@ -101,6 +101,95 @@ class EventsQuery
                 "p.value =e.type_id and p.`group` ='TYPE_MEET'"
             )
             ->where(['e.condition' => 1])
+            ->all();
+    }
+
+    public static function getModerator($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['u2.id', 'u2.name', 'photo'])
+            ->from('events_moderators em')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'em.participant_id =u2.id'
+            )
+            ->where(['em.condition' => 1])
+            ->andWhere(['em.event_id' => $event_id])
+            ->all();
+    }
+
+    public static function getModeratorComplete($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select([
+                'u2.id', 'u2.name', 'last_name', 'company', 'nationality_id', 'photo', 'position', 'position_en',
+                'description', 'description_en', 'p2.name as nationality'
+            ])
+            ->from('events_moderators em')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'em.participant_id =u2.id'
+            )
+            ->join(
+                'INNER JOIN',
+                'parameters p2',
+                "p2.value =u2.nationality_id and p2.`group` ='NATIONALITY'"
+            )
+            ->where(['em.condition' => 1])
+            ->andWhere(['em.event_id' => $event_id])
+            ->all();
+    }
+
+    public static function getSpeaker($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['u2.id', 'u2.name', 'photo'])
+            ->from('events_speakers es')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'es.participant_id =u2.id'
+            )
+            ->where(['es.condition' => 1])
+            ->andWhere(['es.event_id' => $event_id])
+            ->all();
+    }
+    public static function getSpeakerComplete($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select([
+                'u2.id', 'u2.name', 'last_name', 'company', 'nationality_id', 'photo', 'position', 'position_en',
+                'description', 'description_en', 'p2.name as nationality'
+            ])
+            ->from('events_speakers es')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'es.participant_id =u2.id'
+            )
+            ->join(
+                'INNER JOIN',
+                'parameters p2',
+                "p2.value =u2.nationality_id and p2.`group` ='NATIONALITY'"
+            )
+            ->where(['es.condition' => 1])
+            ->andWhere(['es.event_id' => $event_id])
+            ->all();
+    }
+    public static function getPresentations($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['p.id', 'p.name'])
+            ->from('presentations p')
+            ->join(
+                'INNER JOIN',
+                'events e',
+                'p.event_id =e.id'
+            )
+            ->where(['e.condition' => 1])
+            ->andWhere(['e.id' => $event_id])
             ->all();
     }
 }

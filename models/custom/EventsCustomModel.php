@@ -3,12 +3,14 @@
 namespace app\models\custom;
 
 use app\models\EventsModel;
+use app\models\query\EventsQuery;
+use Yii;
 
 class EventsCustomModel extends EventsModel
 {
     public function extraFields()
     {
-        return ['speaker','moderator'];
+        return ['speaker', 'moderator', 'details','speakerComplete','moderatorComplete'];
     }
 
     public function getSpeaker()
@@ -30,6 +32,10 @@ class EventsCustomModel extends EventsModel
             ->andWhere(['es.event_id' => $this->id])
             ->all();
     }
+    public function getSpeakerComplete()
+    {
+        return EventsQuery::getSpeakerComplete($this->id);
+    }
 
     public function getModerator()
     {
@@ -49,5 +55,24 @@ class EventsCustomModel extends EventsModel
             ->where(['em.condition' => 1])
             ->andWhere(['em.event_id' => $this->id])
             ->all();
+    }
+
+    public function getModeratorComplete()
+    {
+        return EventsQuery::getModeratorComplete($this->id);
+    }
+
+    public function getDetails()
+    {
+        $requestParams = Yii::$app->getRequest()->getQueryParams();
+
+        // $eventIds = UsuarioQuery::getEventsByModerator($requestParams['id']);
+        $evento = EventsQuery::getEventById($this->id);
+        // print_r($this->id);
+        // print_r($requestParams['id']);
+        // print_r($eventIds);die();
+        // // $evento = EventsQuery::getEventById($eventIds);
+        // print_r($evento); die();
+        return EventsQuery::getEventsByIds($evento);
     }
 }
