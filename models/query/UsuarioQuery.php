@@ -56,7 +56,7 @@ class UsuarioQuery
 
     public static function getEventsByModerator($moderator_id)
     {
-        $sql = "SELECT DISTINCT event_id from events_speakers es 
+        $sql = "SELECT DISTINCT event_id from events_moderators es 
                 where participant_id =:moderator_id ";
         return Yii::$app->db->createCommand($sql)->bindParam(':moderator_id', $moderator_id)->queryColumn();
     }
