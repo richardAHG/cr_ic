@@ -43,28 +43,28 @@ class AsistenciaCanceladaAction extends Action
         ]);
 
         // $requestParams = Yii::$app->getRequest()->getBodyParams();
+        $requestParams = Yii::$app->getRequest()->getQueryParams();
 
         $users = UsersModel::find()
-            ->where(['condition' => 1])
+            ->where(['condition' => 1, 'id' => $requestParams['id']])
             ->all();
-
         if (!$users) {
             throw new BadRequestHttpException("No existe usuarios");
         }
-     
+
         foreach ($users as $user) {
-            self::envioCorreo($user['email'], $user['name'],'Participacion cancelada');
+            self::envioCorreo($user['email'], $user['name'], 'Participacion cancelada');
         }
-        
+
         Response::JSON(200, 'Correo enviado');
     }
 
-    public static function envioCorreo($email, $nombreUsuairo,$subject)
+    public static function envioCorreo($email, $nombreUsuairo, $subject)
     {
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/asistencia-cancelada',
-            'nombreUsuario' => $nombreUsuairo
+            'nombreUsuario' => $nombreUsuairo,
         ];
         $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada.php", compact("params"));
         $mail->send($email, $subject, $body);

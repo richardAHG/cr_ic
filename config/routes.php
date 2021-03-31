@@ -8,10 +8,10 @@ return [
             'email' => 'emails'
         ],
         'extraPatterns' => [
-            'POST proximos-eventos' => 'proximosEventos',
-            'POST consultar-participacion' => 'consultarParticipacion',
-            'POST asistencia-cancelada' => 'asistenciaCancelada',
-            'POST asistencia-confirmada' => 'asistenciaConfirmada',
+            'GET proximos-eventos' => 'proximosEventos',
+            'GET consultar-participacion' => 'consultarParticipacion',
+            'GET asistencia-cancelada/{id}' => 'asistenciaCancelada',
+            'GET asistencia-confirmada' => 'asistenciaConfirmada',
         ],
     ],
     [

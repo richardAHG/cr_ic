@@ -218,27 +218,27 @@
                                                                                                                                 <?php
                                                                                                                                 $speaker = [];
                                                                                                                                 foreach ($params['data'] as $key => $row) {
-                                                                                                                                    $row['date_string'];
+                                                                                                                                    // $row['date_string'];
+                                                                                                                                    echo "<h2>{$row['date_string']}</h2>" ;
                                                                                                                                     foreach ($row['events'] as $value) {
-                                                                                                                                        $value['type'];
-                                                                                                                                        $value['title'];
+                                                                                                                                        // $value['type'];
+                                                                                                                                        // $value['title'];
                                                                                                                                         foreach ($value['speaker'] as $item) {
                                                                                                                                             $speaker[] = $item['name'];
                                                                                                                                         }
                                                                                                                                         $date=substr($value['date'],11);
                                                                                                                                         $hour = "Empiesza a las {$date} | Hora Lima";
-                                                                                                                                    }
-                                                                                                                                    $spek = implode(", ", $speaker);
+                                                                                                                                        $spek = implode(", ", $speaker);
                                                                                                                                     echo "
-                                                                                                                                        <h2>{$row['date_string']}</h2>
                                                                                                                                         <p>{$value['title']}</p>
                                                                                                                                         <h3>{$value['type']}</h3>
                                                                                                                                         <p>{$spek}</p>
                                                                                                                                         <p>{$hour}</p>
                                                                                                                                         <br>
                                                                                                                                         <hr>
-                                                                                                                                    ";
+                                                                                                                                    ";  
                                                                                                                                     $speaker=[];
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                                 ?>
                                                                                                                             </span>

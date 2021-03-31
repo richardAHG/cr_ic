@@ -48,16 +48,15 @@ class ProximosEventosAction extends Action
             ->where(['condition' => 1])
             ->all();
 
-            // print_r($users); die();
+        // print_r($users); die();
         if (!$users) {
             throw new BadRequestHttpException("No existe usuarios");
         }
 
         foreach ($users as $user) {
-            
-            //enviar email, contiene nueva clave y link de logue
-        self::envioCorreo($user['email'], $user['name'],'Informacion de proximos eventos');
 
+            //enviar email, contiene nueva clave y link de logue
+            self::envioCorreo($user['email'], $user['name'], 'Informacion de proximos eventos', $user['id']);
         }
 
         //enviar email, contiene nueva clave y link de logue
@@ -65,12 +64,13 @@ class ProximosEventosAction extends Action
         Response::JSON(200, 'Clave enviada');
     }
 
-    public static function envioCorreo($email, $nombreUsuairo,$subject)
+    public static function envioCorreo($email, $nombreUsuairo, $subject, $user_id)
     {
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/proximos-eventos',
-            'nombreUsuario' => $nombreUsuairo
+            'nombreUsuario' => $nombreUsuairo,
+            'id' => $user_id
         ];
         $body = Yii::$app->view->renderFile("{$mail->path}/proximos-eventos.php", compact("params"));
         $mail->send($email, $subject, $body);
