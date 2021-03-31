@@ -2,6 +2,7 @@
 
 namespace app\controllers\users\events;
 
+use app\helpers\Constants;
 use app\helpers\Mailer;
 use app\helpers\Response;
 use app\models\EventsModel;
@@ -59,6 +60,7 @@ class CreateAction extends Action
         try {
             foreach ($requestParams['event'] as $key => $value) {
                 $userEvent = new UserEventsModel();
+                $userEvent->language = $requestParams['language'];
                 $userEvent->user_id = $requestParams['user_id'];
                 $userEvent->event_id = $value;
 
@@ -71,19 +73,16 @@ class CreateAction extends Action
             $transaction->rollBack();
             throw $ex->getMessage();
         }
-        self::envioCorreo($user['email'], $user['name'], 'Eventos Inscritos', $user['token']);
+        self::envioCorreo($user['email'], $user['name'], 'Eventos Inscritos', $user['token'], $requestParams['language']);
         // return $model;
         Response::JSON(200, 'Datos insertados con exito');
     }
 
-    public static function envioCorreo($email, $nombreUsuairo, $subject, $token)
+    public static function envioCorreo($email, $nombreUsuairo, $subject, $token, $language)
     {
         $ids = EventsQuery::getEventsByUser($token);
-        // $evento = EventsModel::find()
-        //     ->where(['condition' => 1])
-        //     ->andWhere(['in', 'id', $ids])
-        //     ->all();
-            $evento=EventsQuery::getEvent($ids);
+        
+        $evento = EventsQuery::getEvent($ids);
         $data = EventsQuery::getEventsByIds($evento);
         $mail = new Mailer();
         $params = [
@@ -91,7 +90,12 @@ class CreateAction extends Action
             'nombreUsuario' => $nombreUsuairo,
             'data' => $data
         ];
-        $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos.php", compact("params"));
+        if ($language == Constants::LANGUAGE_ES) {
+            $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos.php", compact("params"));
+        } else {
+            $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos_en.php", compact("params"));
+        }
+
         $mail->send($email, $subject, $body);
     }
 }
