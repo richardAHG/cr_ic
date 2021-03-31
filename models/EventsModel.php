@@ -13,9 +13,12 @@ use Yii;
  * @property string|null $description
  * @property string $date
  * @property string $city
- * @property int $diary_id
  * @property int $type_id
  * @property int|null $condition
+ * @property string|null $date_string
+ * @property string|null $date_string_en
+ * @property string|null $date_string_large
+ * @property string|null $date_string_large_en
  */
 class EventsModel extends \yii\db\ActiveRecord
 {
@@ -33,12 +36,13 @@ class EventsModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'title_en', 'date', 'city', 'diary_id', 'type_id'], 'required'],
+            [['title', 'title_en', 'date', 'city', 'type_id'], 'required'],
             [['description'], 'string'],
             [['date'], 'safe'],
-            [['diary_id', 'type_id', 'condition'], 'integer'],
+            [['type_id', 'condition'], 'integer'],
             [['title', 'title_en'], 'string', 'max' => 150],
-            [['city'], 'string', 'max' => 100],
+            [['city', 'date_string_large', 'date_string_large_en'], 'string', 'max' => 100],
+            [['date_string', 'date_string_en'], 'string', 'max' => 60],
         ];
     }
 
@@ -54,9 +58,12 @@ class EventsModel extends \yii\db\ActiveRecord
             'description' => 'Description',
             'date' => 'Date',
             'city' => 'City',
-            'diary_id' => 'Diary ID',
             'type_id' => 'Type ID',
             'condition' => 'Condition',
+            'date_string' => 'Date String',
+            'date_string_en' => 'Date String En',
+            'date_string_large' => 'Date String Large',
+            'date_string_large_en' => 'Date String Large En',
         ];
     }
 }

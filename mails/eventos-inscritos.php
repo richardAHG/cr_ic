@@ -219,10 +219,10 @@
                                                                                                                                 $speaker = [];
                                                                                                                                 foreach ($params['data'] as $key => $row) {
                                                                                                                                     $row['date_string'];
-                                                                                                                                    foreach ($row['event'] as $value) {
+                                                                                                                                    foreach ($row['events'] as $value) {
                                                                                                                                         $value['type'];
                                                                                                                                         $value['title'];
-                                                                                                                                        foreach ($value['speakers'] as $item) {
+                                                                                                                                        foreach ($value['speaker'] as $item) {
                                                                                                                                             $speaker[] = $item['name'];
                                                                                                                                         }
                                                                                                                                         $date=substr($value['date'],11);

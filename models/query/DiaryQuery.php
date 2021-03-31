@@ -88,7 +88,7 @@ class DiaryQuery
 
     public static function getByUser($token)
     {
-        $sql = "SELECT e.*,d.date as diary_date,date_string,date_string_en,date_string_large,date_string_large_en, 
+        $sql = "SELECT e.*,d.date as diary_date,d.date_string,d.date_string_en,d.date_string_large,d.date_string_large_en, 
             p2.name as type
             from user_events ue
             inner join events e on ue.event_id =e.id 

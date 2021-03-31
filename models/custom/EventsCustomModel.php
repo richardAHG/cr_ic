@@ -3,7 +3,6 @@
 namespace app\models\custom;
 
 use app\models\EventsModel;
-use app\models\EventsSpeakersModel;
 
 class EventsCustomModel extends EventsModel
 {

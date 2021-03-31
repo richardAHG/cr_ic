@@ -1,11 +1,12 @@
 <?php
 
-namespace app\controllers\diary;
+namespace app\controllers\event;
 
-use app\models\DiaryModel;
 use app\models\EventsModel;
 use app\models\query\DiaryQuery;
+use app\models\query\EventsQuery;
 use app\rest\Action;
+use DateTime;
 use Yii;
 use yii\data\ActiveDataProvider;
 
@@ -14,7 +15,7 @@ use yii\data\ActiveDataProvider;
  * 
  * @author Richard Huaman <richard21hg92@gmail.com>
  */
-class ViewCompleteAction extends Action
+class IndexcompleteAction extends Action
 {
     /**
      * @return ActiveDataProvider
@@ -47,7 +48,8 @@ class ViewCompleteAction extends Action
         //         "condition" => 1
         //     ]);
 
-        //agenda del usuario
-        return DiaryQuery::getDiaryByUser($requestParams['token']);
+        // //obtengo evento por id agenda
+        $evento = EventsQuery::getEvent();
+        return EventsQuery::getEventsByIds($evento);
     }
 }

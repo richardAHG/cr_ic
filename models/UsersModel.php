@@ -16,6 +16,7 @@ use Yii;
  * @property int|null $sent
  * @property string $token
  * @property string $company
+ * @property string|null $photo
  */
 class UsersModel extends \yii\db\ActiveRecord
 {
@@ -36,7 +37,7 @@ class UsersModel extends \yii\db\ActiveRecord
             [['name', 'last_name', 'email', 'token', 'company'], 'required'],
             [['nationality_id', 'condition', 'sent'], 'integer'],
             [['token'], 'string'],
-            [['name', 'last_name', 'email'], 'string', 'max' => 80],
+            [['name', 'last_name', 'email', 'photo'], 'string', 'max' => 80],
             [['company'], 'string', 'max' => 50],
         ];
     }
@@ -56,6 +57,7 @@ class UsersModel extends \yii\db\ActiveRecord
             'sent' => 'Sent',
             'token' => 'Token',
             'company' => 'Company',
+            'photo' => 'Photo',
         ];
     }
 }

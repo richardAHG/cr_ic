@@ -6,7 +6,7 @@ use app\rest\ActiveController;
 
 class UsersController extends ActiveController
 {
-    public $modelClass ='app\models\UsersModel';
+    public $modelClass ='app\models\custom\UsersCustomModel';
 
     public function actions()
     {
@@ -14,10 +14,10 @@ class UsersController extends ActiveController
         $actions['update']['class'] = 'app\controllers\users\UpdateAction';
         $actions['create']['class'] = 'app\controllers\users\CreateAction';
         
-        $actions['validate'] = [
-            'class' => 'app\controllers\users\ValidateAction',
-            'modelClass' => 'app\models\UsersModel'
-        ];
+        // $actions['validate'] = [
+        //     'class' => 'app\controllers\users\ValidateAction',
+        //     'modelClass' => 'app\models\UsersModel'
+        // ];
 
         $actions['saveEvent'] = [
             'class' => 'app\controllers\users\events\CreateAction',

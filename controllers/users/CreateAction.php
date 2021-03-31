@@ -2,6 +2,7 @@
 
 namespace app\controllers\users;
 
+use app\helpers\Utils;
 use app\models\query\UsuarioQuery;
 use app\rest\Action;
 use Yii;
@@ -43,6 +44,9 @@ class CreateAction extends Action
         UsuarioQuery::validateEmailDuplicate(
             $requestParams['email']
         );
+        
+        $token = Utils::generateToken();
+        $model->token = $token;
 
         $model->load($requestParams, '');
         if (!$model->save()) {

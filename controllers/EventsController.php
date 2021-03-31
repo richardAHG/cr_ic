@@ -14,6 +14,16 @@ class EventsController extends ActiveController
         // $actions['update']['class'] = 'app\controllers\usuario\UpdateAction';
         $actions['create']['class'] = 'app\controllers\event\CreateAction';
 
+        $actions['complete'] = [
+            'class' => 'app\controllers\event\IndexcompleteAction',
+            'modelClass' => 'app\models\EventsModel'
+        ];
+
+        $actions['byUser'] = [
+            'class' => 'app\controllers\event\ViewCompleteAction',
+            'modelClass' => 'app\models\EventsModel'
+        ];
+
         return $actions;
     }
 }

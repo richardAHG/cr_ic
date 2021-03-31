@@ -4,7 +4,9 @@ namespace app\controllers\users\events;
 
 use app\helpers\Mailer;
 use app\helpers\Response;
+use app\models\EventsModel;
 use app\models\query\DiaryQuery;
+use app\models\query\EventsQuery;
 use app\models\UserEventsModel;
 use app\models\UsersModel;
 use app\rest\Action;
@@ -77,7 +79,13 @@ class CreateAction extends Action
 
     public static function envioCorreo($email, $nombreUsuairo, $subject, $token)
     {
-        $data= DiaryQuery::getDiaryByUser($token);
+        $ids = EventsQuery::getEventsByUser($token);
+        // $evento = EventsModel::find()
+        //     ->where(['condition' => 1])
+        //     ->andWhere(['in', 'id', $ids])
+        //     ->all();
+            $evento=EventsQuery::getEvent($ids);
+        $data = EventsQuery::getEventsByIds($evento);
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/eventos-inscritos',
