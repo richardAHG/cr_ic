@@ -31,10 +31,10 @@ class DiaryQuery
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
 
-    public static function getSpeaker($event_id)
+    public static function getSpeaker_bk($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.name', 'photo', 'type_id', 'p2.name as typepartipant'])
+            ->select(['', 'p.name', 'photo', 'type_id', 'p2.name as typepartipant'])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
@@ -51,10 +51,25 @@ class DiaryQuery
             ->all();
     }
 
-    public static function getModerator($event_id)
+    public static function getSpeaker($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.name', 'photo', 'type_id', 'p2.name as typepartipant'])
+            ->select(['u2.id', 'u2.name', 'photo'])
+            ->from('events_speakers es')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'es.participant_id =u2.id'
+            )
+            ->where(['es.condition' => 1])
+            ->andWhere(['es.event_id' => $event_id])
+            ->all();
+    }
+
+    public static function getModerator_bk($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['p.name', 'photo'])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
@@ -65,6 +80,21 @@ class DiaryQuery
                 'INNER JOIN',
                 'parameters p2',
                 "p2.value =p.type_id and p2.`group` ='TYPE_PARTICIPANT'"
+            )
+            ->where(['em.condition' => 1])
+            ->andWhere(['em.event_id' => $event_id])
+            ->all();
+    }
+
+    public static function getModerator($event_id)
+    {
+        return (new \yii\db\Query())
+            ->select(['u2.id', 'u2.name', 'photo'])
+            ->from('events_moderators em')
+            ->join(
+                'INNER JOIN',
+                'users u2',
+                'em.participant_id =u2.id'
             )
             ->where(['em.condition' => 1])
             ->andWhere(['em.event_id' => $event_id])
