@@ -71,7 +71,6 @@ class CreateAction extends Action
             $transaction->rollBack();
             throw $ex->getMessage();
         }
-
         self::envioCorreo($user['email'], $user['name'], 'Eventos Inscritos', $user['token']);
         // return $model;
         Response::JSON(200, 'Datos insertados con exito');

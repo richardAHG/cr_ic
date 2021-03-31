@@ -214,30 +214,29 @@
                                                               line-height: 150%;
                                                             ">
                                                                                                                             <span class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Senectus arcu tortor nec lectus aliquam, proin morbi habitasse neque. Quis ligula aliquet in sit id lorem posuere varius. Varius mauris tincidunt arcu, elementum fames id massa proin. Ut aliquet diam nisi, ullamcorper placerat.</span>
-                                                                                                                            <span>
+                                                                                                                            <span style="font-family: Arial, Helvetica, sans-serif;">
                                                                                                                                 <?php
                                                                                                                                 $speaker = [];
                                                                                                                                 foreach ($params['data'] as $key => $row) {
                                                                                                                                     // $row['date_string'];
-                                                                                                                                    echo "<h2>{$row['date_string']}</h2>" ;
+                                                                                                                                    echo "<h2 style='font-size:20px;margin:0;margin-top:50px;margin-bottom: 15px;'>{$row['date_string']}</h2>";
                                                                                                                                     foreach ($row['events'] as $value) {
                                                                                                                                         // $value['type'];
                                                                                                                                         // $value['title'];
                                                                                                                                         foreach ($value['speaker'] as $item) {
                                                                                                                                             $speaker[] = $item['name'];
                                                                                                                                         }
-                                                                                                                                        $date=substr($value['date'],11);
+                                                                                                                                        $date = substr($value['date'], 11);
                                                                                                                                         $hour = "Empiesza a las {$date} | Hora Lima";
                                                                                                                                         $spek = implode(", ", $speaker);
-                                                                                                                                    echo "
-                                                                                                                                        <p>{$value['title']}</p>
-                                                                                                                                        <h3>{$value['type']}</h3>
-                                                                                                                                        <p>{$spek}</p>
-                                                                                                                                        <p>{$hour}</p>
-                                                                                                                                        <br>
-                                                                                                                                        <hr>
-                                                                                                                                    ";  
-                                                                                                                                    $speaker=[];
+                                                                                                                                        echo "
+                                                                                                                                        <p style='color:#B33B2B; font-size:15px; margin:0;'>{$value['title']}</p>
+                                                                                                                                        <h3 style='font-size:20px;margin:0;'>{$value['type']}</h3>
+                                                                                                                                        <p style='font-size:15px;margin:0;color:#2B2D31'>{$spek}</p>
+                                                                                                                                        <p style='font-size:15px;margin:0;color:#8F9C9D;margin:0;margin-bottom: 50px;'>{$hour}</p>
+                                                                                                                                        <hr style='border: 1px solid #BECDCD;'>
+                                                                                                                                    ";
+                                                                                                                                        $speaker = [];
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                                 ?>
