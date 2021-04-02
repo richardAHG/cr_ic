@@ -3,7 +3,8 @@
     "description": "prueba",
     "require": {
         "yiisoft/yii2": "2.0.41.1",
-        "phpmailer/phpmailer": "^6.3"
+        "phpmailer/phpmailer": "^6.3",
+        "google/apiclient": "2.0"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "^2.2"
