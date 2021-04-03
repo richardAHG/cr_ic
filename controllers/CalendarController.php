@@ -6,7 +6,7 @@ use app\rest\ActiveController;
 use Google_Client;
 use Google_Service_Calendar;
 
-class OauthController extends ActiveController
+class CalendarController extends ActiveController
 {
     public $modelClass = 'app\models\CalendarGoogleModel';
 
