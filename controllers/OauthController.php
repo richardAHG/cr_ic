@@ -2,24 +2,19 @@
 
 namespace app\controllers;
 
-use app\rest\ActiveController;
+use yii\web\Controller;
 use Google_Client;
 use Google_Service_Calendar;
 use Yii;
 
-class OauthController extends ActiveController
+class OauthController extends Controller
 {
-    public $modelClass = 'app\models\CalendarGoogleModel';
-
-    public function actions()
-    {
-        return [];
-    }
 
     public function actionIndex()
     {
         // $requestParams = Yii::$app->getRequest()->getQueryParams();
         $code = Yii::$app->getRequest()->get('code', false);
-        print_r($code);
+        
+        echo $code;
     }
 }
