@@ -16,7 +16,7 @@ class OauthController extends Controller
         $code = Yii::$app->getRequest()->get('code', false);
         $client = new Google_Client();
         $accessToken = $client->fetchAccessTokenWithAuthCode($code);
-        
-        echo $accessToken;
+        $client->setAccessToken($accessToken);
+        print_r($client->getAccessToken());
     }
 }
