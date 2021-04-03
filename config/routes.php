@@ -29,7 +29,8 @@ return [
         'class' => 'yii\rest\UrlRule',
         'pluralize' => false,
         'controller' => [
-            'calendar' => 'calendar'
+            'calendar' => 'calendar',
+            'oauth' => 'oauth'
         ],
         // 'extraPatterns' => [
         //     // 'POST validate' => 'validate',
