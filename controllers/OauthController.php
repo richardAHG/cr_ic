@@ -7,7 +7,7 @@ use Google_Client;
 use Google_Service_Calendar;
 use Yii;
 
-class CalendarController extends ActiveController
+class OauthController extends ActiveController
 {
     public $modelClass = 'app\models\CalendarGoogleModel';
 
