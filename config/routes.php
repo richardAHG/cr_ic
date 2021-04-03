@@ -22,8 +22,19 @@ return [
         ],
         'extraPatterns' => [
             // 'POST validate' => 'validate',
-            'POST save-event' => 'saveEvent'
+            'POST save-event' => 'saveEvent',
         ],
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
+        'controller' => [
+            'calendar' => 'calendar'
+        ],
+        // 'extraPatterns' => [
+        //     // 'POST validate' => 'validate',
+        //     'POST save-event' => 'saveEvent',
+        // ],
     ],
     [
         'class' => 'yii\rest\UrlRule',
