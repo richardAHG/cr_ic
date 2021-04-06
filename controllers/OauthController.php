@@ -46,11 +46,11 @@ class OauthController extends Controller
             throw new BadRequestHttpException("error al guardar los datos");
         }
         
-
+        return true;
 
         //echo "<pre>";print_r($accessToken);die();
         //$client->setAccessToken($accessToken);
         //print_r($client->getAccessToken());
-        die();
+        
     }
 }
