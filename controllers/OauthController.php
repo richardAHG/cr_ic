@@ -41,7 +41,7 @@ class OauthController extends Controller
         $callGoogle= new CalendarGoogleModel();
         $callGoogle->usuario_id=1;
         $callGoogle->token = json_encode($accessToken);
-        $callGoogle->date_create = $today->format('Y-m-d');
+        $callGoogle->date_created = $today->format('Y-m-d');
         print_r($callGoogle); die();
         if ($callGoogle->save()) {
             throw new BadRequestHttpException("error al guardar los datos");
