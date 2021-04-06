@@ -20,7 +20,6 @@ class OauthController extends Controller
         $code = Yii::$app->getRequest()->get('code', false);
         $client = new Google_Client();
         $client->setAuthConfig('credentials.json');
-        // echo $code;die();
 
         if ($client->isAccessTokenExpired()) {
             if ($client->getRefreshToken()) {
@@ -42,14 +41,16 @@ class OauthController extends Controller
         $callGoogle->usuario_id=1;
         $callGoogle->token = json_encode($accessToken);
         $callGoogle->date_created = $today->format('Y-m-d');
-        // print_r($callGoogle); die();
-        if ($callGoogle->save()) {
+        
+        if (!$callGoogle->save()) {
             throw new BadRequestHttpException("error al guardar los datos");
         }
+        
 
-        // echo "<pre>";print_r($accessToken);die();
-        $client->setAccessToken($accessToken);
-        print_r($client->getAccessToken());
+
+        //echo "<pre>";print_r($accessToken);die();
+        //$client->setAccessToken($accessToken);
+        //print_r($client->getAccessToken());
         die();
     }
 }

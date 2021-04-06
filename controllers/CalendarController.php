@@ -19,7 +19,7 @@ class CalendarController extends ActiveController
     {
         $client = new Google_Client();
         $client->setApplicationName('Google Calendar API PHP Richard Test Software');
-        $client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
+        $client->setScopes(Google_Service_Calendar::CALENDAR_EVENTS);
         $client->setAuthConfig('credentials.json');
         $client->setAccessType('offline');
         $client->setPrompt('select_account consent');
