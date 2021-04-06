@@ -7,6 +7,7 @@ use app\rest\ActiveController;
 use Exception;
 use Google_Client;
 use Google_Service_Calendar;
+use Google_Service_Calendar_Event;
 use Yii;
 
 class CalendarController extends ActiveController
@@ -46,27 +47,55 @@ class CalendarController extends ActiveController
         }
 
         $service = new Google_Service_Calendar($client);
-        $calendarId = 'primary';
-        $optParams = array(
-            'maxResults' => 10,
-            'orderBy' => 'startTime',
-            'singleEvents' => true,
-            'timeMin' => date('c'),
-        );
-        $results = $service->events->listEvents($calendarId, $optParams);
-        $events = $results->getItems();
+        // $calendarId = 'primary';
+        // $optParams = array(
+        //     'maxResults' => 10,
+        //     'orderBy' => 'startTime',
+        //     'singleEvents' => true,
+        //     'timeMin' => date('c'),
+        // );
+        // $event=new Google_Service_Calendar_Event();
+        // $event->maxAttendees = 10;
+        // $event->sendUpdates='all';
+        // $event->end='12:00';
+        // $event->start='10:00';
+        // $event->conferenceData='info de la conferencia';
+        // $event->description='descripcion del evento';
+        // $event->location='lima - Peru';
 
-        if (empty($events)) {
-            echo "No upcoming events found.\n";
-        } else {
-            echo "Upcoming events:\n";
-            foreach ($events as $event) {
-                $start = $event->start->dateTime;
-                if (empty($start)) {
-                    $start = $event->start->date;
-                }
-                print_r($event->getSummary());
-            }
-        }
+        // $results = $service->events->listEvents($calendarId, $optParams);
+
+        $event = new Google_Service_Calendar_Event(array(
+            'summary' => 'Google I/O 2015',
+            'location' => '800 Howard St., San Francisco, CA 94103',
+            'description' => 'A chance to hear more about Google\'s developer products.',
+            'start' => array(
+              'dateTime' => '2015-05-28T09:00:00-07:00',
+              'timeZone' => 'America/Los_Angeles',
+            ),
+            'end' => array(
+              'dateTime' => '2015-05-28T17:00:00-07:00',
+              'timeZone' => 'America/Los_Angeles',
+            ),
+            'recurrence' => array(
+              'RRULE:FREQ=DAILY;COUNT=2'
+            ),
+            'attendees' => array(
+              array('email' => 'lpage@example.com'),
+              array('email' => 'sbrin@example.com'),
+            ),
+            'reminders' => array(
+              'useDefault' => FALSE,
+              'overrides' => array(
+                array('method' => 'email', 'minutes' => 24 * 60),
+                array('method' => 'popup', 'minutes' => 10),
+              ),
+            ),
+          ));
+          
+          $calendarId = 'primary';
+          $event = $service->events->insert($calendarId, $event);
+          printf('Event created: %s\n', $event->htmlLink);
+        
     }
 }
