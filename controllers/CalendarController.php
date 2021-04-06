@@ -70,19 +70,19 @@ class CalendarController extends ActiveController
             'location' => '800 Howard St., San Francisco, CA 94103',
             'description' => 'A chance to hear more about Google\'s developer products.',
             'start' => array(
-              'dateTime' => '2015-05-28T09:00:00-07:00',
+              'dateTime' => '2021-05-10T09:00:00-07:00',
               'timeZone' => 'America/Los_Angeles',
             ),
             'end' => array(
-              'dateTime' => '2015-05-28T17:00:00-07:00',
+              'dateTime' => '2021-05-10T17:00:00-07:00',
               'timeZone' => 'America/Los_Angeles',
             ),
             'recurrence' => array(
               'RRULE:FREQ=DAILY;COUNT=2'
             ),
             'attendees' => array(
-              array('email' => 'lpage@example.com'),
-              array('email' => 'sbrin@example.com'),
+              array('email' => 'richard21hg92@gmail.com'),
+              array('email' => 'richard@cuborojo.pe'),
             ),
             'reminders' => array(
               'useDefault' => FALSE,
