@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\CalendarGoogleModel;
+use DateTime;
 use Exception;
 use yii\web\Controller;
 use Google_Client;
 use Google_Service_Calendar;
 use Yii;
+use yii\web\BadRequestHttpException;
 
 class OauthController extends Controller
 {
@@ -34,8 +37,20 @@ class OauthController extends Controller
             }
         }
 
-        echo "<pre>";print_r($accessToken);die();
+        $today = new DateTime('now');
+        $callGoogle= new CalendarGoogleModel();
+        $callGoogle->usuario_id=1;
+        $callGoogle->token = json_encode($accessToken);
+        $callGoogle->date_create = $today;
+
+        if ($callGoogle->save()) {
+            throw new BadRequestHttpException("error al guardar los datos");
+            
+        }
+
+        // echo "<pre>";print_r($accessToken);die();
         $client->setAccessToken($accessToken);
         print_r($client->getAccessToken());
+        die();
     }
 }
