@@ -42,7 +42,7 @@ class OauthController extends Controller
         $callGoogle->usuario_id=1;
         $callGoogle->token = json_encode($accessToken);
         $callGoogle->date_created = $today->format('Y-m-d');
-        print_r($callGoogle); die();
+        // print_r($callGoogle); die();
         if ($callGoogle->save()) {
             throw new BadRequestHttpException("error al guardar los datos");
         }
