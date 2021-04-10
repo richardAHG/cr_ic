@@ -101,8 +101,8 @@ class CalendarGoogle
       //   'RRULE:FREQ=DAILY;COUNT=2'
       // ),
       'attendees' => array(
-        array('name' => 'richard21hg92@gmail.com'),
-        array('name' => 'richard@cuborojo.pe'),
+        array('email' => 'richard21hg92@gmail.com'),
+        array('email' => 'richard@cuborojo.pe'),
       ),
       'reminders' => array(
         // 'useDefault' => FALSE,
