@@ -36,7 +36,7 @@ class OauthController extends Controller
                 }
             }
         }
-        
+
         $user = 14;
         $today = new DateTime('now');
         $callGoogle = new CalendarGoogleModel();
@@ -48,10 +48,11 @@ class OauthController extends Controller
             throw new BadRequestHttpException("error al guardar los datos");
         }
 
+        return true;
         //iniciamos proceso de registro en el calendario
 
-        $linkResult = CalendarGoogle::crearEvento($user);
-        echo $linkResult;
+        // $linkResult = CalendarGoogle::crearEvento($user);
+        // echo $linkResult;
 
         //echo "<pre>";print_r($accessToken);die();
         //$client->setAccessToken($accessToken);
