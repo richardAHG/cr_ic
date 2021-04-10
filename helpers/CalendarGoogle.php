@@ -39,7 +39,7 @@ class CalendarGoogle
     if (!$user) {
       throw new Exception("El usuairo no existe");
     }
-    print_r($user); die();
+    
     $ids = EventsQuery::getEventsByUser($user->token);
 
     $evento = EventsQuery::getEventById($ids);
@@ -83,6 +83,7 @@ class CalendarGoogle
         $event = new Google_Service_Calendar_Event($infoEvent);
         $calendarId = 'primary';
         $resultEvent = $service->events->insert($calendarId, $event);
+        echo $resultEvent->htmlLink;
       }
     }
 
