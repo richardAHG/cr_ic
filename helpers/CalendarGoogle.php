@@ -81,7 +81,7 @@ class CalendarGoogle
           ]
         ];
 
-        $event = new Google_Service_Calendar_Event(array(
+        $event = array(
       'summary' => 'Google I/O 2015',
       'location' => '800 Howard St., San Francisco, CA 94103',
       'description' => 'A chance to hear more about Google\'s developer products.',
@@ -107,7 +107,7 @@ class CalendarGoogle
           array('method' => 'popup', 'minutes' => 10),
         ),
       ),
-    ));
+    );
 
         print_r($infoEvent); 
         print_r($event); die();
