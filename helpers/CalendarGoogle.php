@@ -75,9 +75,6 @@ class CalendarGoogle
           'description' => $value['description'],
           'start' => $start,
           'end' => $end,
-        'recurrence' => array(
-          'RRULE:FREQ=DAILY;COUNT=2'
-        ),
           'attendees' => $arraySpeakers,
           'reminders' => [
             'useDefault'=>FALSE,
@@ -115,7 +112,7 @@ class CalendarGoogle
 
         // print_r($infoEvent); 
         // print_r($event); die();
-        $event = new Google_Service_Calendar_Event($event);
+        $event = new Google_Service_Calendar_Event($infoEvent);
         $calendarId = 'primary';
         $resultEvent = $service->events->insert($calendarId, $event);
         echo $resultEvent->htmlLink;
