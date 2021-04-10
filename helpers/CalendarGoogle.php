@@ -5,6 +5,7 @@ namespace app\helpers;
 use app\models\CalendarGoogleModel;
 use app\models\query\EventsQuery;
 use app\models\UsersModel;
+use DateTime;
 use Exception;
 use Google_Client;
 use Google_Service_Calendar;
@@ -84,7 +85,7 @@ class CalendarGoogle
             'email' => 'prueba@gmail.com'
           ];
         }
-
+        $date=new DateTime($value['date']);
         // $start = [
         //   'dateTime' => '2021-05-10T09:00:00-07:00',
         //   'timeZone' => 'America/Los_Angeles'
@@ -94,12 +95,12 @@ class CalendarGoogle
         //   'timeZone' => 'America/Los_Angeles'
         // ];
         $start = [
-          'dateTime' =>  $value['date'],
-          'timeZone' => 'America/lima'
+          'dateTime' =>  $date->format('Y-m-d H:i:s'),
+          'timeZone' => 'UTC'
         ];
         $end = [
-          'dateTime' =>  $value['date'],
-          'timeZone' => 'America/lima'
+          'dateTime' =>  $date->format('Y-m-d H:i:s'),
+          'timeZone' => 'UTC'
         ];
         $infoEvent = [
           'summary' => $value['title'],
