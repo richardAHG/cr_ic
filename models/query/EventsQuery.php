@@ -24,6 +24,55 @@ class EventsQuery
         return Yii::$app->db->createCommand($sql)->bindParam(':speaker', $speaker_id)->queryColumn();
     }
 
+    public static function getEventsCheck($events = [], $idEventByUser)
+    {
+        $eventos = [];
+        foreach ($events as $key => $val) {
+            $exist = in_array($val['id'], $idEventByUser);
+            $date = new DateTime($val["date"]);
+            $presentations = self::getPresentations($val['id']);
+            $moderator = self::getModerator($val['id']);
+            $speaker = self::getSpeaker($val['id']);
+            [$type, $type_en] = explode("|", $val['type_event']);
+            $eventoformateado = [
+                "id" => $val["id"],
+                "title" => $val["title"],
+                "date_string" => $val['date_string'],
+                "date_string_en" => $val['date_string_en'],
+                "date_string_large" => $val['date_string_large'],
+                "date_string_large_en" => $val['date_string_large_en'],
+                "title_en" => $val['title_en'],
+                "description" => $val['description'],
+                "date" => $val['date'],
+                "city" => $val['city'],
+                // "diary_id" => $val['diary_id'],
+                "type_id" => $val['type_event'],
+                "type" => $type,
+                "type_en" => $type_en,
+                "presentations" => $presentations,
+                "speaker" => $speaker,
+                "moderator" => $moderator,
+                "exist" => $exist
+            ];
+            $eventos[$date->format("Y-m-d")][] = $eventoformateado;
+        }
+        // print_r($eventos); die();
+        $data = [];
+        foreach ($eventos as $fecha => $items) {
+            // print_r($items); die();
+            $item = end($items);
+            $data[] = [
+                "date" => $fecha,
+                "date_string" => $item['date_string'],
+                "date_string_en" => $item['date_string_en'],
+                "date_string_large" => $item['date_string_large'],
+                "date_string_large_en" => $item['date_string_large_en'],
+                "events" => $items
+            ];
+        }
+        return $data;
+    }
+
     public static function getEventsByIds($events = [])
     {
         $eventos = [];
@@ -208,5 +257,4 @@ class EventsQuery
             throw new BadRequestHttpException("Eventos enviados no existen en la Base de Datos,verificar datos");
         }
     }
-
 }

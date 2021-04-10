@@ -48,8 +48,10 @@ class IndexcompleteAction extends Action
         //         "condition" => 1
         //     ]);
 
+        $ids = EventsQuery::getEventsByUser($requestParams['token']);
+        
         // //obtengo evento por id agenda
         $evento = EventsQuery::getEvent();
-        return EventsQuery::getEventsByIds($evento);
+        return EventsQuery::getEventsCheck($evento,$ids);
     }
 }
