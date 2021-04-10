@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\CalendarGoogle;
 use app\models\CalendarGoogleModel;
 use DateTime;
 use Exception;
@@ -28,29 +29,32 @@ class OauthController extends Controller
                 // Exchange authorization code for an access token.
                 $accessToken = $client->fetchAccessTokenWithAuthCode($code);
                 $client->setAccessToken($accessToken);
-    
+
                 // Check to see if there was an error.
                 if (array_key_exists('error', $accessToken)) {
                     throw new Exception(join(', ', $accessToken));
                 }
             }
         }
-
+        $user = 14;
         $today = new DateTime('now');
-        $callGoogle= new CalendarGoogleModel();
-        $callGoogle->usuario_id=1;
+        $callGoogle = new CalendarGoogleModel();
+        $callGoogle->usuario_id = $user;
         $callGoogle->token = json_encode($accessToken);
         $callGoogle->date_created = $today->format('Y-m-d');
-        
+
         if (!$callGoogle->save()) {
             throw new BadRequestHttpException("error al guardar los datos");
         }
-        
-        return true;
+
+        //iniciamos proceso de registro en el calendario
+
+        $linkResult = CalendarGoogle::crearEvento($user);
+        echo $linkResult;
 
         //echo "<pre>";print_r($accessToken);die();
         //$client->setAccessToken($accessToken);
         //print_r($client->getAccessToken());
-        
+
     }
 }
