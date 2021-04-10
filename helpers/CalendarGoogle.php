@@ -57,7 +57,7 @@ class CalendarGoogle
         $arraySpeakers = [];
         foreach ($speakers as $key => $valuex) {
           $arraySpeakers[] = [
-            'name' => $valuex
+            'email' => $valuex
           ];
         }
 
