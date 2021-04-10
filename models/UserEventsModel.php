@@ -12,6 +12,7 @@ use Yii;
  * @property int $event_id
  * @property int|null $condition
  * @property int|null $language
+ * @property string|null $date_creation
  */
 class UserEventsModel extends \yii\db\ActiveRecord
 {
@@ -31,6 +32,7 @@ class UserEventsModel extends \yii\db\ActiveRecord
         return [
             [['user_id', 'event_id'], 'required'],
             [['user_id', 'event_id', 'condition', 'language'], 'integer'],
+            [['date_creation'], 'safe'],
         ];
     }
 
@@ -45,6 +47,7 @@ class UserEventsModel extends \yii\db\ActiveRecord
             'event_id' => 'Event ID',
             'condition' => 'Condition',
             'language' => 'Language',
+            'date_creation' => 'Date Creation',
         ];
     }
 }

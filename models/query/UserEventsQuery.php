@@ -12,11 +12,9 @@ class UserEventsQuery
         $userEvents = UserEventsModel::find()
             ->select(['event_id'])
             ->where([
-                'user_id' => $params['user_id'],
-                'language' => $params['language']
+                'user_id' => $params['user_id']
             ])
             ->column();
-
         //retornar eventos no registrados en la Db asigando al usuario
         return array_diff($params['event'], $userEvents);
     }

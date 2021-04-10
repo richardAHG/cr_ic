@@ -13,6 +13,8 @@ use app\models\query\UsuarioQuery;
 use app\models\UserEventsModel;
 use app\models\UsersModel;
 use app\rest\Action;
+use DateTime;
+use DateTimeZone;
 use Exception;
 use Yii;
 use yii\base\Model;
@@ -60,13 +62,19 @@ class CreateAction extends Action
         //validar eventos no inscritos
         $UniqueEvents = UserEventsQuery::eventUnique($requestParams);
 
+        if (empty($UniqueEvents)) {
+            Response::JSON(201, 'Ya se encuentra registrado en estos eventos');    
+        }
+
         $transaction = Yii::$app->db->beginTransaction();
         try {
+            $date = $fecha = new DateTime('now', new DateTimeZone('America/Lima'));
             foreach ($UniqueEvents as $key => $value) {
                 $userEvent = new UserEventsModel();
                 $userEvent->language = $requestParams['language'];
                 $userEvent->user_id = $requestParams['user_id'];
                 $userEvent->event_id = $value;
+                $userEvent->date_creation = $date->format('Y-m-d H:i:s');
 
                 if (!$userEvent->save()) {
                     throw new BadRequestHttpException("Error al guardar el evento");
