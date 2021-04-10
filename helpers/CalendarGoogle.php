@@ -57,17 +57,17 @@ class CalendarGoogle
         $arraySpeakers = [];
         foreach ($speakers as $key => $valuex) {
           $arraySpeakers[] = [
-            'email' => $valuex
+            'email' => 'prueba@gmail.com'
           ];
         }
 
         $start = [
           'dateTime' => '2021-05-10T09:00:00-07:00',
-          'timeZone' => 'America/lima'
+          'timeZone' => 'America/Los_Angeles'
         ];
         $end = [
           'dateTime' => '2021-05-10T09:00:00-07:00',
-          'timeZone' => 'America/lima'
+          'timeZone' => 'America/Los_Angeles'
         ];
         $infoEvent = [
           'summary' => $value['title'],
