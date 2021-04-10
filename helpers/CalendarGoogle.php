@@ -20,7 +20,7 @@ class CalendarGoogle
       ->orderBy(['id' => SORT_DESC])
       ->one();
     $accessToken = json_decode($calendarGoogle->token, true);
-
+    print_r($accessToken); die();
     $client = new Google_Client();
     $client->setAuthConfig('credentials.json');
     $client->setAccessToken($accessToken);

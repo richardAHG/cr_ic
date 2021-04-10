@@ -36,6 +36,7 @@ class OauthController extends Controller
                 }
             }
         }
+        
         $user = 14;
         $today = new DateTime('now');
         $callGoogle = new CalendarGoogleModel();
