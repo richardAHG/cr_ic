@@ -13,6 +13,30 @@ use yii\web\BadRequestHttpException;
 
 class CalendarGoogle
 {
+
+  public static function getTokenAutorize($codeGoogle)
+  {
+
+    $client = new Google_Client();
+    $client->setAuthConfig('credentials.json');
+
+    if ($client->isAccessTokenExpired()) {
+      if ($client->getRefreshToken()) {
+        $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+      } else {
+        // Exchange authorization code for an access token.
+        $accessToken = $client->fetchAccessTokenWithAuthCode($codeGoogle);
+        $client->setAccessToken($accessToken);
+
+        // Check to see if there was an error.
+        if (array_key_exists('error', $accessToken)) {
+          throw new Exception(join(', ', $accessToken));
+        }
+      }
+    }
+    return $accessToken;
+  }
+
   public static function crearEvento($userId)
   {
     $calendarGoogle = CalendarGoogleModel::find()
@@ -20,7 +44,7 @@ class CalendarGoogle
       ->orderBy(['id' => SORT_DESC])
       ->one();
     $accessToken = json_decode($calendarGoogle->token, true);
-    
+
     $client = new Google_Client();
     $client->setAuthConfig('credentials.json');
     $client->setAccessToken($accessToken);
@@ -39,7 +63,7 @@ class CalendarGoogle
     if (!$user) {
       throw new Exception("El usuairo no existe");
     }
-    
+
     $ids = EventsQuery::getEventsByUser($user->token);
 
     $evento = EventsQuery::getEventById($ids);
@@ -77,7 +101,7 @@ class CalendarGoogle
           'end' => $end,
           // 'attendees' => $arraySpeakers,
           'reminders' => [
-            'useDefault'=>FALSE,
+            'useDefault' => FALSE,
             'overrides' => ['method' => 'popup', 'minutes' => 10]
           ]
         ];
@@ -95,7 +119,7 @@ class CalendarGoogle
       throw new BadRequestHttpException("Error al dar de baja el token de usuario");
     }
 
-    echo $resultEvent->htmlLink;
+    return $resultEvent->htmlLink;
 
     // $event = new Google_Service_Calendar_Event(array(
     //   'summary' => 'Google I/O 2015',

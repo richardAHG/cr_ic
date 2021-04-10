@@ -4,26 +4,21 @@ namespace app\controllers;
 
 use app\helpers\CalendarGoogle;
 use app\models\CalendarGoogleModel;
-use app\rest\ActiveController;
 use DateTime;
 use Exception;
+use yii\web\Controller;
 use Google_Client;
+use Google_Service_Calendar;
 use Yii;
 use yii\web\BadRequestHttpException;
 
-class OauthController extends ActiveController
+class OauthController extends Controller
 {
-    public $modelClass = 'app\models\CalendarGoogleModel';
 
-    public function actions()
+    public function actionIndex()
     {
-        return [];
-    }
-
-    public function actionCreate()
-    {      
+        
         $code = Yii::$app->getRequest()->get('code', false);
-
         $client = new Google_Client();
         $client->setAuthConfig('credentials.json');
 
