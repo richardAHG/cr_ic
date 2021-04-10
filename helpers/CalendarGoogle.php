@@ -85,13 +85,21 @@ class CalendarGoogle
           ];
         }
 
+        // $start = [
+        //   'dateTime' => '2021-05-10T09:00:00-07:00',
+        //   'timeZone' => 'America/Los_Angeles'
+        // ];
+        // $end = [
+        //   'dateTime' => '2021-05-10T09:00:00-07:00',
+        //   'timeZone' => 'America/Los_Angeles'
+        // ];
         $start = [
-          'dateTime' => '2021-05-10T09:00:00-07:00',
-          'timeZone' => 'America/Los_Angeles'
+          'dateTime' =>  $value['date'],
+          'timeZone' => 'America/lima'
         ];
         $end = [
-          'dateTime' => '2021-05-10T09:00:00-07:00',
-          'timeZone' => 'America/Los_Angeles'
+          'dateTime' =>  $value['date'],
+          'timeZone' => 'America/lima'
         ];
         $infoEvent = [
           'summary' => $value['title'],
