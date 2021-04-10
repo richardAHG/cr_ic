@@ -95,7 +95,7 @@ class CalendarController extends ActiveController
           
           $calendarId = 'primary';
           $event = $service->events->insert($calendarId, $event);
-          printf('Event created: %s\n', $event->htmlLink);
-        
+        //   printf('Event created: %s\n', $event->htmlLink);
+          return '';
     }
 }

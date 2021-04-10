@@ -2,8 +2,10 @@
 
 namespace app\models\query;
 
+use app\models\EventsModel;
 use DateTime;
 use Yii;
+use yii\web\BadRequestHttpException;
 
 class EventsQuery
 {
@@ -192,4 +194,19 @@ class EventsQuery
             ->andWhere(['e.id' => $event_id])
             ->all();
     }
+
+    public static function eventExist($event)
+    {
+        $eventIds = EventsModel::find()
+            ->select(['id'])
+            ->where(['condition' => 1])
+            ->column();
+
+        //validar existencia de ids
+        $eventIncorrect = array_diff($event, $eventIds);
+        if (!empty($eventIncorrect)) {
+            throw new BadRequestHttpException("Eventos enviados no existen en la Base de Datos,verificar datos");
+        }
+    }
+
 }

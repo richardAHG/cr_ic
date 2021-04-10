@@ -3,6 +3,7 @@
 namespace app\models\query;
 
 use app\models\UsersModel;
+use Exception;
 use Yii;
 use yii\web\BadRequestHttpException;
 
@@ -59,5 +60,20 @@ class UsuarioQuery
         $sql = "SELECT DISTINCT event_id from events_moderators es 
                 where participant_id =:moderator_id ";
         return Yii::$app->db->createCommand($sql)->bindParam(':moderator_id', $moderator_id)->queryColumn();
+    }
+
+    public static function userExist($user_id)
+    {
+        $user = UsersModel::find()
+            ->where([
+                'condition' => 1,
+                'id' => $user_id
+            ])
+            ->one();
+
+        if (!$user) {
+            throw new Exception("El usuario no existe");
+        }
+        return $user;
     }
 }

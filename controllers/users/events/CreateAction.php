@@ -8,6 +8,8 @@ use app\helpers\Response;
 use app\models\EventsModel;
 use app\models\query\DiaryQuery;
 use app\models\query\EventsQuery;
+use app\models\query\UserEventsQuery;
+use app\models\query\UsuarioQuery;
 use app\models\UserEventsModel;
 use app\models\UsersModel;
 use app\rest\Action;
@@ -49,16 +51,18 @@ class CreateAction extends Action
         ]);
         $requestParams = Yii::$app->getRequest()->getBodyParams();
 
-        $user = UsersModel::find()
-            ->where([
-                'condition' => 1,
-                'id' => $requestParams['user_id']
-            ])
-            ->one();
+        //validar usuario
+        $user = UsuarioQuery::userExist($requestParams['user_id']);
+
+        //validar existencia de eventos
+        EventsQuery::eventExist($requestParams['event']);
+
+        //validar eventos no inscritos
+        $UniqueEvents = UserEventsQuery::eventUnique($requestParams);
 
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            foreach ($requestParams['event'] as $key => $value) {
+            foreach ($UniqueEvents as $key => $value) {
                 $userEvent = new UserEventsModel();
                 $userEvent->language = $requestParams['language'];
                 $userEvent->user_id = $requestParams['user_id'];
@@ -82,8 +86,10 @@ class CreateAction extends Action
     {
         $ids = EventsQuery::getEventsByUser($token);
         
-        $evento = EventsQuery::getEvent($ids);
+        $evento = EventsQuery::getEventById($ids);
+        
         $data = EventsQuery::getEventsByIds($evento);
+        
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/eventos-inscritos',
