@@ -75,7 +75,7 @@ class CalendarGoogle
           'description' => $value['description'],
           'start' => $start,
           'end' => $end,
-          'attendees' => $arraySpeakers,
+          // 'attendees' => $arraySpeakers,
           'reminders' => [
             'useDefault'=>FALSE,
             'overrides' => ['method' => 'popup', 'minutes' => 10]
