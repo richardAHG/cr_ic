@@ -61,26 +61,29 @@ class CalendarGoogle
           ];
         }
 
-        // $start = [
-        //   'dateTime' => '2021-05-10T09:00:00-07:00',
-        //   'timeZone' => 'America/lima'
-        // ];
-        // $end = [
-        //   'dateTime' => '2021-05-10T09:00:00-07:00',
-        //   'timeZone' => 'America/lima'
-        // ];
-        // $infoEvent = [
-        //   'summary' => $value['title'],
-        //   'location' => $value['city'],
-        //   'description' => $value['description'],
-        //   'start' => $start,
-        //   'end' => $end,
-        //   'attendees' => $arraySpeakers,
-        //   'reminders' => [
-        //     'useDefault'=>FALSE,
-        //     'overrides' => ['method' => 'popup', 'minutes' => 10]
-        //   ]
-        // ];
+        $start = [
+          'dateTime' => '2021-05-10T09:00:00-07:00',
+          'timeZone' => 'America/lima'
+        ];
+        $end = [
+          'dateTime' => '2021-05-10T09:00:00-07:00',
+          'timeZone' => 'America/lima'
+        ];
+        $infoEvent = [
+          'summary' => $value['title'],
+          'location' => $value['city'],
+          'description' => $value['description'],
+          'start' => $start,
+          'end' => $end,
+        'recurrence' => array(
+          'RRULE:FREQ=DAILY;COUNT=2'
+        ),
+          'attendees' => $arraySpeakers,
+          'reminders' => [
+            'useDefault'=>FALSE,
+            'overrides' => ['method' => 'popup', 'minutes' => 10]
+          ]
+        ];
 
         $event = array(
       'summary' => 'Google I/O 2015',
@@ -94,17 +97,17 @@ class CalendarGoogle
         'dateTime' => '2021-05-10T17:00:00-07:00',
         'timeZone' => 'America/Los_Angeles',
       ),
-      'recurrence' => array(
-        'RRULE:FREQ=DAILY;COUNT=2'
-      ),
+      // 'recurrence' => array(
+      //   'RRULE:FREQ=DAILY;COUNT=2'
+      // ),
       'attendees' => array(
-        array('email' => 'richard21hg92@gmail.com'),
-        array('email' => 'richard@cuborojo.pe'),
+        array('name' => 'richard21hg92@gmail.com'),
+        array('name' => 'richard@cuborojo.pe'),
       ),
       'reminders' => array(
-        'useDefault' => FALSE,
+        // 'useDefault' => FALSE,
         'overrides' => array(
-          array('method' => 'email', 'minutes' => 24 * 60),
+          // array('method' => 'email', 'minutes' => 24 * 60),
           array('method' => 'popup', 'minutes' => 10),
         ),
       ),
