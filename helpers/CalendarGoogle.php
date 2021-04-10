@@ -63,11 +63,11 @@ class CalendarGoogle
 
         $start = [
           'dateTime' => $value['date'],
-          'timeZone' => ''
+          'timeZone' => 'America/lima'
         ];
         $end = [
           'dateTime' => $value['date'],
-          'timeZone' => ''
+          'timeZone' => 'America/lima'
         ];
         $infoEvent = [
           'summary' => $value['title'],
@@ -80,6 +80,7 @@ class CalendarGoogle
             'overrides' => ['method' => 'popup', 'minutes' => 10]
           ]
         ];
+        print_r($infoEvent); die();
         $event = new Google_Service_Calendar_Event($infoEvent);
         $calendarId = 'primary';
         $resultEvent = $service->events->insert($calendarId, $event);
@@ -88,12 +89,12 @@ class CalendarGoogle
     }
 
     //deshabilitamos el token de usuario de la table user_events
-    $calendarGoogle->condition = 0;
-    if (!$calendarGoogle->save()) {
-      throw new BadRequestHttpException("Error al dar de baja el token de usuario");
-    }
+    // $calendarGoogle->condition = 0;
+    // if (!$calendarGoogle->save()) {
+    //   throw new BadRequestHttpException("Error al dar de baja el token de usuario");
+    // }
 
-    return $resultEvent->htmlLink;
+    // return $resultEvent->htmlLink;
 
     // $event = new Google_Service_Calendar_Event(array(
     //   'summary' => 'Google I/O 2015',
