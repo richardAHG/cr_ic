@@ -105,7 +105,7 @@ class CalendarGoogle
         array('email' => 'richard@cuborojo.pe'),
       ),
       'reminders' => array(
-        // 'useDefault' => FALSE,
+        'useDefault' => FALSE,
         'overrides' => array(
           // array('method' => 'email', 'minutes' => 24 * 60),
           array('method' => 'popup', 'minutes' => 10),
