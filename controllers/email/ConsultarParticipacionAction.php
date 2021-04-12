@@ -48,16 +48,16 @@ class ConsultarParticipacionAction extends Action
             ->where(['condition' => 1])
             ->all();
 
-            // print_r($users); die();
+        // print_r($users); die();
         if (!$users) {
             throw new BadRequestHttpException("No existe usuarios");
         }
 
         foreach ($users as $user) {
-            
-            //enviar email, contiene nueva clave y link de logue
-        self::envioCorreo($user['email'], $user['name'],'Información de próximos eventos');
 
+            //enviar email, contiene nueva clave y link de logue
+            $nameComplete = $user['name'] . ' ' . $user['last_name'];
+            self::envioCorreo($user['email'], $nameComplete, 'Información de próximos eventos');
         }
 
         //enviar email, contiene nueva clave y link de logue
@@ -65,7 +65,7 @@ class ConsultarParticipacionAction extends Action
         Response::JSON(200, 'Correo enviado');
     }
 
-    public static function envioCorreo($email, $nombreUsuairo,$subject)
+    public static function envioCorreo($email, $nombreUsuairo, $subject)
     {
         $mail = new Mailer();
         $params = [

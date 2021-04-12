@@ -15,7 +15,7 @@
 <body>
 
 
-    <p>Hola <b><?= $params["nombreUsuario"] ?></b>,</p>
+    
     <table width="100%" cellspacing="0" cellpadding="0" border="0" name="bmeMainBody" style="background-color: white" bgcolor="#e6e6e8">
         <tbody>
             <tr>
