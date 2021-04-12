@@ -56,7 +56,7 @@ class ConsultarParticipacionAction extends Action
         foreach ($users as $user) {
             
             //enviar email, contiene nueva clave y link de logue
-        self::envioCorreo($user['email'], $user['name'],'Confirmar su participación');
+        self::envioCorreo($user['email'], $user['name'],'Información de próximos eventos');
 
         }
 

@@ -56,7 +56,7 @@ class ProximosEventosAction extends Action
         foreach ($users as $user) {
 
             //enviar email, contiene nueva clave y link de logue
-            self::envioCorreo($user['email'], $user['name'], 'Informacion de proximos eventos', $user['id']);
+            self::envioCorreo($user['email'], $user['name'], 'Confirmar Participación', $user['id']);
         }
 
         //enviar email, contiene nueva clave y link de logue
