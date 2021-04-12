@@ -47,16 +47,19 @@ class AsistenciaCanceladaAction extends Action
 
         $users = UsersModel::find()
             ->where(['condition' => 1, 'id' => $requestParams['id']])
-            ->all();
+            ->one();
         if (!$users) {
             throw new BadRequestHttpException("No existe usuarios");
         }
 
-        foreach ($users as $user) {
-            self::envioCorreo($user['email'], $user['name'], 'Participacion cancelada');
+        $users->sent = 0;
+        if (!$users->save()) {
+            throw new BadRequestHttpException("Error al actualizar estado de envio de correo");
         }
-        return;
-        // Response::JSON(200, 'Correo enviado');
+
+        self::envioCorreo($users['email'], $users['name'], 'Participacion cancelada');
+
+        return \Yii::$app->response->redirect('http://credicorpcapitalconference.web.app/noregister', 301)->send();
     }
 
     public static function envioCorreo($email, $nombreUsuairo, $subject)

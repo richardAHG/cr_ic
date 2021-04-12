@@ -48,6 +48,10 @@ class CreateAction extends Action
         );
         if ($exists) {
             $user = UsersModel::find()->where(['email' => $requestParams['email']])->one();
+            $user->sent = 1;
+            if (!$user->save()) {
+                throw new ServerErrorHttpException('Error al actualziar estado de envio de correo');
+            }
             Response::JSON(201, "Usted ya se encuentra registrado", $user);
         }
         $token = Utils::generateToken();
