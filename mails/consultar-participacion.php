@@ -65,7 +65,7 @@
               color: #5E6364;
               text-align: left;">
                             <p style="line-height: 150%;margin-bottom: 15px;">
-                                <?= $params["nombreUsuario"] ?>
+                                <?= ucwords($params["nombreUsuario"]); ?>
                             </p>
                         </td>
                     </tr>
