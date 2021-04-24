@@ -32,10 +32,10 @@ return [
             'calendar' => 'calendar',
             'oauth' => 'oauth'
         ],
-        // 'extraPatterns' => [
-        //     // 'POST validate' => 'validate',
-        //     'POST save-event' => 'saveEvent',
-        // ],
+        'extraPatterns' => [
+            // 'POST validate' => 'validate',
+            'GET microsoft' => 'outlook',
+        ],
     ],
     [
         'class' => 'yii\rest\UrlRule',
