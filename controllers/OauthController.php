@@ -20,6 +20,13 @@ class OauthController extends ActiveController
         return [];
     }
 
+    public function actionOutlook()
+    {
+        $code = Yii::$app->getRequest()->get('code', false);
+
+        return compact("code");
+    }
+
     public function actionCreate()
     {      
         $code = Yii::$app->getRequest()->get('code', false);
