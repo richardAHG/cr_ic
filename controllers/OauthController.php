@@ -23,8 +23,26 @@ class OauthController extends ActiveController
     public function actionOutlook()
     {
         $code = Yii::$app->getRequest()->get('code', false);
+        $tenantId = "consumers";
+        $clientId = "d9b054b3-5380-49a5-a93b-5186f9e7b8cb";
+        $clientSecret = "l0Ck_lc~5SxFO42bpdB-QTEQ~nboD44Dor";
+        $guzzle = new \GuzzleHttp\Client();
+        $url = 'https://login.microsoftonline.com/' . $tenantId . '/oauth2/v2.0/token';
+        $token = json_decode($guzzle->post($url, [
+            'headers' => [
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => [
+                'client_id' => $clientId,
+                'scope' => 'user.read%20Calendars.ReadWrite',
+                'code' => $code,
+                'client_secret' => $clientSecret,
+                'grant_type' => 'authorization_code',
+            ],
+        ])->getBody()->getContents());
+        // $accessToken = $token->access_token;
 
-        return compact("code");
+        return compact("accessToken");
     }
 
     public function actionCreate()
