@@ -45,8 +45,6 @@ class OauthController extends ActiveController
 
         $request = $guzzle->get('https://graph.microsoft.com/v1.0/me/events', [
             'headers' => [
-                'content-type' => 'application/json',
-                'Prefer' => "outlook.timezone='America/Bogota'",
                 'Authorization' => "Bearer {$accessToken}"
             ]
         ]);
