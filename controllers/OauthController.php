@@ -34,7 +34,8 @@ class OauthController extends ActiveController
             ],
             'form_params' => [
                 'client_id' => $clientId,
-                'scope' => 'user.read%20Calendars.ReadWrite',
+                'scope' => 'user.read Calendars.ReadWrite',
+                'redirect_uri'=>'https://rhg-sandbox.com/oauth/microsoft',
                 'code' => $code,
                 'client_secret' => $clientSecret,
                 'grant_type' => 'authorization_code',
@@ -42,7 +43,7 @@ class OauthController extends ActiveController
         ])->getBody()->getContents());
         // $accessToken = $token->access_token;
 
-        return compact("accessToken");
+        return compact("token");
     }
 
     public function actionCreate()
