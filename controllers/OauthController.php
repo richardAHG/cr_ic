@@ -41,9 +41,19 @@ class OauthController extends ActiveController
                 'grant_type' => 'authorization_code',
             ],
         ])->getBody()->getContents());
-        // $accessToken = $token->access_token;
+        $accessToken = $token->access_token;
 
-        return compact("token");
+        $request = $guzzle->get('https://graph.microsoft.com/v1.0/me/events', [
+            'headers' => [
+                'content-type' => 'application/json',
+                'Prefer' => "outlook.timezone='America/Bogota'",
+                'Authorization' => "Bearer {$accessToken}"
+            ]
+        ]);
+
+        $response = json_decode($request->getBody()->getContents());
+
+        return compact("response");
     }
 
     public function actionCreate()
