@@ -35,7 +35,7 @@ class OauthController extends ActiveController
             'form_params' => [
                 'client_id' => $clientId,
                 'scope' => 'user.read Calendars.ReadWrite',
-                'redirect_uri'=>'https://rhg-sandbox.com/oauth/microsoft',
+                'redirect_uri' => 'https://rhg-sandbox.com/oauth/microsoft',
                 'code' => $code,
                 'client_secret' => $clientSecret,
                 'grant_type' => 'authorization_code',
@@ -43,19 +43,40 @@ class OauthController extends ActiveController
         ])->getBody()->getContents());
         $accessToken = $token->access_token;
 
-        $request = $guzzle->get('https://graph.microsoft.com/v1.0/me/events', [
+        // $lists = $guzzle->get('https://graph.microsoft.com/v1.0/me/events', [
+        //     'headers' => [
+        //         'Authorization' => "Bearer {$accessToken}"
+        //     ]
+        // ]);
+
+        $create = $guzzle->post('https://graph.microsoft.com/v1.0/me/events', [
             'headers' => [
                 'Authorization' => "Bearer {$accessToken}"
+            ],
+            'form_params' => [
+                "subject" => "Evento desde integracion",
+                "body" => [
+                    "contentType" => "HTML",
+                    "content" => "<h1>Eco</<h2>"
+                ],
+                "start" => [
+                    "dateTime" => "2021-04-25T12:00:00",
+                    "timeZone" => "America/Bogota"
+                ],
+                "end" => [
+                    "dateTime" => "2021-04-25T14:00:00",
+                    "timeZone" => "America/Bogota"
+                ],
             ]
         ]);
 
-        $response = json_decode($request->getBody()->getContents());
+        $response = json_decode($create->getBody()->getContents());
 
         return compact("response");
     }
 
     public function actionCreate()
-    {      
+    {
         $code = Yii::$app->getRequest()->get('code', false);
 
         $client = new Google_Client();
