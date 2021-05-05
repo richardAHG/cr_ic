@@ -59,7 +59,8 @@ class AsistenciaCanceladaAction extends Action
 
         self::envioCorreo($users['email'], $users['name'], 'Participacion cancelada');
 
-        return \Yii::$app->response->redirect('http://credicorpcapitalconference.web.app/noregister', 301)->send();
+        // return \Yii::$app->response->redirect('http://credicorpcapitalconference.web.app/noregister', 200)->send();
+        Response::JSON(200, 'Correo enviado');
     }
 
     public static function envioCorreo($email, $nombreUsuairo, $subject)
