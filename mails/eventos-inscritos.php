@@ -234,7 +234,7 @@
                                                                                                                                         <h3 style='font-size:20px;margin:0;'>{$value['type']}</h3>
                                                                                                                                         <p style='font-size:15px;margin:0;color:#2B2D31'>{$spek}</p>
                                                                                                                                         <p style='font-size:15px;margin:0;color:#8F9C9D;margin:0;'>{$hour}</p>
-                                                                                                                                        <a href='https://credicorpcapitalconference.web.app/schedule' style='font-size:15px;margin:0;margin:0;margin-bottom: 50px;'>Link de Acceso</a>
+                                                                                                                                        <a href='https://credicorpcapitalconference.web.app/event' style='font-size:15px;margin:0;margin:0;margin-bottom: 50px;'>Link de Acceso</a>
                                                                                                                                         <hr style='border: 1px solid #BECDCD;'>
                                                                                                                                     ";
                                                                                                                                         $speaker = [];
