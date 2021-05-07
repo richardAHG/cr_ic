@@ -109,7 +109,7 @@ class CalendarGoogle
         $infoEvent = [
           'summary' => $value['title'],
           'location' => $value['city'],
-          'description' => $value['description'],
+          'description' => $value['description'] ."<a href='https://credicorpcapitalconference.web.app/schedule'>Acceder</a>",
           'start' => $start,
           'end' => $end,
           // 'attendees' => $arraySpeakers,
