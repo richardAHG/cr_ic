@@ -29,7 +29,18 @@ return [
         'class' => 'yii\rest\UrlRule',
         'pluralize' => false,
         'controller' => [
-            'calendar' => 'calendar',
+            'calendar' => 'calendar'
+        ],
+        'extraPatterns' => [
+            // 'POST validate' => 'validate',
+            'GET gmail' => 'gmail',
+            'GET outlook' => 'outlook',
+        ],
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
+        'controller' => [
             'oauth' => 'oauth'
         ],
         'extraPatterns' => [
