@@ -17,6 +17,8 @@ class CalendarController extends ActiveController
 
   public function actions()
   {
+    // $actions = parent::actions();
+    // $actions['calendar.saludo']['prepareDataProvider'] = [$this, 'actionSaludo'];
     return [];
   }
 
@@ -31,21 +33,37 @@ class CalendarController extends ActiveController
     return $client->createAuthUrl();
   }
 
-  public function actionOutlook()
+  public function actionOutlook_bk()
   {
-    $client_id='d9b054b3-5380-49a5-a93b-5186f9e7b8cb';
-    $response_type='code';
-    $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
-    $response_mode='query';
-    $scope='offline_access%20user.read%20Calendars.ReadWrite';
-    $state='12345';
+    $client_id = 'd9b054b3-5380-49a5-a93b-5186f9e7b8cb';
+    $response_type = 'code';
+    // $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
+    $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';
+    $response_mode = 'query';
+    $scope = 'offline_access%20user.read%20Calendars.ReadWrite';
+    $state = '12345';
 
     $url = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?client_id=$client_id&response_type=$response_type&redirect_uri=$redirect_uri&response_mode=$response_mode&scope=$scope&state=$state";
 
     return $url;
   }
 
-  public function actionCreate()
+  public function actionOutlook()
+  {
+    $client_id = '61b2eee2-4d96-47d7-8903-f2dcbdd31940';
+    $response_type = 'code';
+    // $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
+    $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';
+    $response_mode = 'query';
+    $scope = 'offline_access%20user.read%20Calendars.ReadWrite';
+    $state = '12345';
+
+    $url = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?client_id=$client_id&response_type=$response_type&redirect_uri=$redirect_uri&response_mode=$response_mode&scope=$scope&state=$state";
+
+    return $url;
+  }
+
+  public function actionGmailsave()
   {
     $requestParams = Yii::$app->getRequest()->getBodyParams();
 
@@ -63,13 +81,16 @@ class CalendarController extends ActiveController
       throw new BadRequestHttpException("error al guardar los datos");
     }
 
-    // $calendarGoogle = CalendarGoogleModel::find()
-    //   ->where(['condition' => 1, 'usuario_id' => 2])
-    //   ->one();
-
-    // $accessToken = json_decode($callGoogle->token, true);
-
     //Prcoeso para registrar en el calndario del usuario
     return CalendarGoogle::crearEvento($requestParams['userId']);
+  }
+
+  public function actionOutlooksave()
+  {
+    $requestParams = Yii::$app->getRequest()->getBodyParams();
+
+    //Solitar Access token a outlook
+    $accessToken = CalendarGoogle::getTokenAutorize($requestParams['code']);
+    return $accessToken;
   }
 }

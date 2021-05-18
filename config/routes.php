@@ -35,7 +35,9 @@ return [
             // 'POST validate' => 'validate',
             'GET gmail' => 'gmail',
             'GET outlook' => 'outlook',
-        ],
+            'POST gmail-save'=> 'gmailsave',
+            'POST outlook-save'=> 'outlooksave'
+        ]
     ],
     [
         'class' => 'yii\rest\UrlRule',
