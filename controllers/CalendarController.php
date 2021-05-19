@@ -38,7 +38,8 @@ class CalendarController extends ActiveController
     $client_id = 'd9b054b3-5380-49a5-a93b-5186f9e7b8cb';
     $response_type = 'code';
     // $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
-    $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';
+    // $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';
+    $redirect_uri = 'https%3A%2F%2Fapi.v2.credicorpcapitalconference.com%2Foauth%2Fmicrosoft';
     $response_mode = 'query';
     $scope = 'offline_access%20user.read%20Calendars.ReadWrite';
     $state = '12345';
@@ -54,6 +55,7 @@ class CalendarController extends ActiveController
     $response_type = 'code';
     // $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
     $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';
+    // $redirect_uri = 'https%3A%2F%2Fapi.v2.credicorpcapitalconference.com%2Foauth%2Fmicrosoft';
     $response_mode = 'query';
     $scope = 'offline_access%20user.read%20Calendars.ReadWrite';
     $state = '12345';
