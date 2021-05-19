@@ -93,8 +93,11 @@ class CalendarController extends ActiveController
     $requestParams = Yii::$app->getRequest()->getBodyParams();
 
     //Solitar Access token a outlook
-    $accessToken = CalendarMicrosoft::getTokenAutorize($requestParams['code']);
-    print_r($accessToken);
+    // $accessToken = CalendarMicrosoft::getTokenAutorize($requestParams['code']);
+    // print_r($accessToken);
+    // die();
+    $data=CalendarMicrosoft::crearEvento($requestParams);
+    print_r($data);
     die();
     }
 }

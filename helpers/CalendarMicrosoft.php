@@ -37,8 +37,11 @@ class CalendarMicrosoft
         return $accessToken;
     }
 
-    public function getEvents($userId,$code)
+    public static function crearEvento($params)
     {
+        $userId=$params['userId'];
+        $code=$params['code'];
+        $token=$params['tokenUser'];
         $user = UsersModel::find()
             ->where(['condition' => 1, 'id' => $userId])
             ->one();
@@ -78,6 +81,7 @@ class CalendarMicrosoft
                 $create = $guzzle->post('https://graph.microsoft.com/v1.0/me/events', [
                     'headers' => [
                         'Authorization' => "Bearer {$accessToken}"
+
                     ],
                     'form_params' => [
                         "subject" => "Eventos - CREDICORP CAPITAL",
