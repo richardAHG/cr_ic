@@ -26,7 +26,7 @@ class CalendarMicrosoft
             'form_params' => [
                 'client_id' => $clientId,
                 'scope' => 'user.read Calendars.ReadWrite',
-                'redirect_uri' => 'https://rhg-sandbox.com/oauth/microsoft',
+                'redirect_uri' => 'https://credicorpcapitalconference.web.app/oauth',
                 'code' => $codeOutlook,
                 'client_secret' => $clientSecret,
                 'grant_type' => 'authorization_code',
