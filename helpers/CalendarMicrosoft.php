@@ -80,10 +80,10 @@ class CalendarMicrosoft
 
                 $create = $guzzle->post('https://graph.microsoft.com/v1.0/me/events', [
                     'headers' => [
-                        'Authorization' => "Bearer {$accessToken}"
-
+                        'Authorization' => "Bearer {$accessToken}",
+                        'Content-Type' => 'application/json'
                     ],
-                    'form_params' => [
+                    'json' => [
                         "subject" => "Eventos - CREDICORP CAPITAL",
                         "body" => [
                             "contentType" => "HTML",
