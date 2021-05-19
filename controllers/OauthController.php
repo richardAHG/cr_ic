@@ -91,7 +91,8 @@ class OauthController extends ActiveController
             'form_params' => [
                 'client_id' => $clientId,
                 'scope' => 'user.read Calendars.ReadWrite',
-                'redirect_uri' => 'https://api.v2.credicorpcapitalconference.com/oauth/microsoft',
+                // 'redirect_uri' => 'https://api.v2.credicorpcapitalconference.com/oauth/microsoft',
+                'redirect_uri' => 'https://credicorpcapitalconference.web.app/oauth',
                 'code' => $code,
                 'client_secret' => $clientSecret,
                 'grant_type' => 'authorization_code',
