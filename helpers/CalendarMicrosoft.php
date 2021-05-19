@@ -88,9 +88,9 @@ class CalendarMicrosoft
                         "body" => [
                             "contentType" => "HTML",
                             "content" => "<h1>$titulo</<h2>
-                            <p>$ubicación</p>
+                            <p>Lugar: $ubicación</p>
                             <p>Descripción: $descripcion</p>
-                            <p><a href='https://credicorpcapitalconference.web.app/event'>Acceder</a></p>
+                            <a href='https://credicorpcapitalconference.web.app/event'>Acceder</a>
                             "
                         ],
                         "start" => [
@@ -108,7 +108,8 @@ class CalendarMicrosoft
             }
         }
 
-        return compact("response");
+        // return compact("response");
+        return ['result'=>$response->webLink];
     }
 
     public function testSaveCalendarOutlook()
