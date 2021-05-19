@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\CalendarGoogle;
+use app\helpers\CalendarMicrosoft;
 use app\models\CalendarGoogleModel;
 use app\rest\ActiveController;
 use DateTime;
@@ -92,7 +93,7 @@ class CalendarController extends ActiveController
     $requestParams = Yii::$app->getRequest()->getBodyParams();
 
     //Solitar Access token a outlook
-    $accessToken = CalendarGoogle::getTokenAutorize($requestParams['code']);
+    $accessToken = CalendarMicrosoft::getTokenAutorize($requestParams['code']);
     return $accessToken;
   }
 }
