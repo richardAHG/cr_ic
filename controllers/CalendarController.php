@@ -94,6 +94,7 @@ class CalendarController extends ActiveController
 
     //Solitar Access token a outlook
     $accessToken = CalendarMicrosoft::getTokenAutorize($requestParams['code']);
-    return $accessToken;
-  }
+    print_r($accessToken);
+    die();
+    }
 }
