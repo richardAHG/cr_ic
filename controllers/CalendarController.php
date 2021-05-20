@@ -97,7 +97,6 @@ class CalendarController extends ActiveController
     // print_r($accessToken);
     // die();
     $url = CalendarMicrosoft::crearEvento($requestParams);
-    print_r($url);
-    die();
+    return $url['result'];
     }
 }
