@@ -52,7 +52,7 @@ class CalendarController extends ActiveController
 
   public function actionOutlook()
   {
-    $client_id = '61b2eee2-4d96-47d7-8903-f2dcbdd31940';
+    $client_id = '0ba27a1f-e7f6-429d-b6fe-0f4b6c18ca35';
     $response_type = 'code';
     // $redirect_uri='https%3A%2F%2Frhg-sandbox.com%2Foauth%2Fmicrosoft';
     $redirect_uri = 'https%3A%2F%2Fcredicorpcapitalconference.web.app%2Foauth';

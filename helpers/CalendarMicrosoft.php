@@ -15,8 +15,8 @@ class CalendarMicrosoft
     {
         // $codeOutlook = Yii::$app->getRequest()->get('code', false);
         $tenantId = "consumers";
-        $clientId = "61b2eee2-4d96-47d7-8903-f2dcbdd31940";
-        $clientSecret = "N0o..9ZrCZ9ir1q_CDdw71z~huWpba2_OI";
+        $clientId = "0ba27a1f-e7f6-429d-b6fe-0f4b6c18ca35";
+        $clientSecret = "INvfj~wI5qX9UIyD.rM_k1g4Uk7-8NOy5c";
         $guzzle = new \GuzzleHttp\Client();
         $url = 'https://login.microsoftonline.com/' . $tenantId . '/oauth2/v2.0/token';
         $token = json_decode($guzzle->post($url, [
