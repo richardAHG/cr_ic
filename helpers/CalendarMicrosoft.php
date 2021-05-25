@@ -14,7 +14,8 @@ class CalendarMicrosoft
     public static function getTokenAutorize($codeOutlook)
     {
         // $codeOutlook = Yii::$app->getRequest()->get('code', false);
-        $tenantId = "consumers";
+        // $tenantId = "consumers";
+        $tenantId = "common";
         $clientId = "61b2eee2-4d96-47d7-8903-f2dcbdd31940";
         $clientSecret = "N0o..9ZrCZ9ir1q_CDdw71z~huWpba2_OI";
         $guzzle = new \GuzzleHttp\Client();
