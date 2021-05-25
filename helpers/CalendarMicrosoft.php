@@ -15,7 +15,7 @@ class CalendarMicrosoft
     {
         // $codeOutlook = Yii::$app->getRequest()->get('code', false);
         // $tenantId = "consumers";
-        $tenantId = "common";
+        $tenantId = "organizations";
         $clientId = "61b2eee2-4d96-47d7-8903-f2dcbdd31940";
         $clientSecret = "N0o..9ZrCZ9ir1q_CDdw71z~huWpba2_OI";
         $guzzle = new \GuzzleHttp\Client();

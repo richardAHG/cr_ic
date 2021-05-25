@@ -61,7 +61,7 @@ class CalendarController extends ActiveController
     $scope = 'offline_access%20user.read%20Calendars.ReadWrite';
     $state = '12345';
     // consumers
-    $url = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=$client_id&response_type=$response_type&redirect_uri=$redirect_uri&response_mode=$response_mode&scope=$scope&state=$state";
+    $url = "https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?client_id=$client_id&response_type=$response_type&redirect_uri=$redirect_uri&response_mode=$response_mode&scope=$scope&state=$state";
 
     return $url;
   }
