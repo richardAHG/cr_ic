@@ -135,6 +135,7 @@ class EventsQuery
             )
             ->where(['e.condition' => 1])
             ->andWhere(['in', 'e.id', $ids])
+            ->orderBy(['e.date' => SORT_ASC])
             ->all();
     }
 
