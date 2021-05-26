@@ -152,6 +152,7 @@ class EventsQuery
                 "p.value =e.type_id and p.`group` ='TYPE_MEET'"
             )
             ->where(['e.condition' => 1])
+            ->orderBy(['e.date' => SORT_ASC])
             ->all();
     }
 
