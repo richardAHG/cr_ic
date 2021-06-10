@@ -35,8 +35,8 @@ return [
             // 'POST validate' => 'validate',
             'GET google' => 'gmail',
             'GET office365' => 'outlook',
-            'POST gmail-save'=> 'gmailsave',
-            'POST outlook-save'=> 'outlooksave'
+            'POST google-save'=> 'gmailsave',
+            'POST office365-save'=> 'outlooksave'
         ]
     ],
     [
