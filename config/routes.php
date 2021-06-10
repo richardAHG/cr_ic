@@ -33,8 +33,8 @@ return [
         ],
         'extraPatterns' => [
             // 'POST validate' => 'validate',
-            'GET gmail' => 'gmail',
-            'GET outlook' => 'outlook',
+            'GET google' => 'gmail',
+            'GET office365' => 'outlook',
             'POST gmail-save'=> 'gmailsave',
             'POST outlook-save'=> 'outlooksave'
         ]
