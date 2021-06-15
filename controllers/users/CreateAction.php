@@ -49,10 +49,21 @@ class CreateAction extends Action
             $requestParams['email']
         );
         if ($exists) {
-            $user = UsersModel::find()->where(['email' => $requestParams['email']])->one();
+            $user = UsersModel::find()->where(['upper(email)' => mb_strtoupper($requestParams['email'])])->one();
             $user->sent = 1;
+
+            if (empty($user->token)) {
+                $token = Utils::generateToken();
+                $model->token = $token;
+                self::envioCorreo($requestParams, 'Confirmación de Registro');
+                if (!$user->save()) {
+                    throw new ServerErrorHttpException('Error al actualizar token');
+                }
+                Response::JSON(200, "Usted se ha registrado correctamente", $user);
+            }
+
             if (!$user->save()) {
-                throw new ServerErrorHttpException('Error al actualziar estado de envio de correo');
+                throw new ServerErrorHttpException('Error al actualizar estado de envio de correo');
             }
             Response::JSON(201, "Usted ya se encuentra registrado", $user);
         }
@@ -74,8 +85,8 @@ class CreateAction extends Action
             "ruta" => 'www.investor-conference/eventos-inscritos',
             'nombreUsuario' => $params['name']
         ];
-        
-            $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));
+
+        $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));
 
         $mail->send($params['email'], $subject, $body);
     }
