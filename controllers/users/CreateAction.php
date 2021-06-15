@@ -54,7 +54,7 @@ class CreateAction extends Action
 
             if (empty($user->token)) {
                 $token = Utils::generateToken();
-                $model->token = $token;
+                $user->token = $token;
                 self::envioCorreo($requestParams, 'Confirmación de Registro');
                 if (!$user->save()) {
                     throw new ServerErrorHttpException('Error al actualizar token');
