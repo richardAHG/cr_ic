@@ -63,22 +63,19 @@ class CreateAction extends Action
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        self::envioCorreo($requestParams, 'Confirmación de Registro', $requestParams['language']);
+        self::envioCorreo($requestParams, 'Confirmación de Registro');
         Response::JSON(200, "Usted se ha registrado correctamente", $model);
     }
 
-    public static function envioCorreo($params, $subject, $language = 1)
+    public static function envioCorreo($params, $subject)
     {
         $mail = new Mailer();
         $param = [
             "ruta" => 'www.investor-conference/eventos-inscritos',
             'nombreUsuario' => $params['name']
         ];
-        if ($language == Constants::LANGUAGE_ES) {
+        
             $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));
-        } else {
-            $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro_en.php", compact("param"));
-        }
 
         $mail->send($params['email'], $subject, $body);
     }
