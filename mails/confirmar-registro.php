@@ -11,9 +11,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>CORREO CREDICORP</title>
 </head>
+
 <body>
     <p>Hola <b><?= $param["nombreUsuario"] ?></b>,</p>
-    
+
     <table width="100%" cellspacing="0" cellpadding="0" border="0" name="bmeMainBody" style="background-color: white" bgcolor="#e6e6e8">
         <tbody>
             <tr>
@@ -146,7 +147,7 @@
                                                                 line-height: 150%;
                                                                 color: #141c2e;
                                                                 font-weight: bold;
-                                                              ">Lo sentimos</span>
+                                                              "></span>
                                                                                                                         </div>
                                                                                                                         <div style="
                                                               line-height: 150%;
