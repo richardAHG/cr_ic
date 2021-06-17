@@ -25,6 +25,11 @@ class UsersController extends ActiveController
             'modelClass' => 'app\models\UserEventsModel'
         ];
 
+        $actions['validateToken'] = [
+            'class' => 'app\controllers\users\events\ValidateAction',
+            'modelClass' => 'app\models\UserEventsModel'
+        ];
+
         return $actions;
     }
 }

@@ -76,4 +76,19 @@ class UsuarioQuery
         }
         return $user;
     }
+
+    public static function userExistByToken($token)
+    {
+        $user = UsersModel::find()
+            ->where([
+                'condition' => 1,
+                'token' => $token
+            ])
+            ->one();
+
+        if (!$user) {
+            throw new Exception("El token ya caducó");
+        }
+        return true;
+    }
 }
