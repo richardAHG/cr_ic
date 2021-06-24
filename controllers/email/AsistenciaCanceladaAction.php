@@ -57,7 +57,7 @@ class AsistenciaCanceladaAction extends Action
             throw new BadRequestHttpException("Error al actualizar estado de envio de correo");
         }
 
-        self::envioCorreo($users['email'], $users['name'], 'Participacion cancelada');
+        self::envioCorreo($users['email'], $users['name'], 'Esperamos verlo(a) pronto');
 
         // return \Yii::$app->response->redirect('http://credicorpcapitalconference.web.app/noregister', 200)->send();
         Response::JSON(200, 'Correo enviado');

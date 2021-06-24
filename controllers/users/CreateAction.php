@@ -74,7 +74,7 @@ class CreateAction extends Action
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        self::envioCorreo($requestParams, 'Confirmación de Registro');
+        self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia');
         Response::JSON(200, "Usted se ha registrado correctamente", $model);
     }
 

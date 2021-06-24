@@ -29,7 +29,7 @@ class Mailer
             $this->mail->Username = 'ranthonyhg@gmail.com';
             $this->mail->Password = '47960299G';
             $this->mail->CharSet = PHPMailer::CHARSET_UTF8;
-            $this->mail->setFrom('richard@cuborojo.com', 'CREDICORP');
+            $this->mail->setFrom('richard@cuborojo.com', 'Credicorp Capital - Investor Conference');
         } catch (Exception $ex) {
             echo $this->mail->ErrorInfo;
         }
