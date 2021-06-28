@@ -61,6 +61,7 @@ class AsistenciaCanceladaAction extends Action
 
         $users->sent = 0;
         if (!$users->save()) {
+            print_r($users); die();
             throw new BadRequestHttpException("Error al actualizar estado de envio de correo");
         }
 
