@@ -70,7 +70,8 @@ class ProximosEventosAction extends Action
         $params = [
             "ruta" => 'www.investor-conference/proximos-eventos',
             'nombreUsuario' => $nombreUsuairo,
-            'id' => $user_id
+            'id' => $user_id,
+            'email' => $email,
         ];
         $body = Yii::$app->view->renderFile("{$mail->path}/proximos-eventos.php", compact("params"));
         $mail->send($email, $subject, $body);

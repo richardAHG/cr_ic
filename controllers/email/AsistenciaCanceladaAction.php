@@ -6,6 +6,7 @@ use app\helpers\Mailer;
 use app\helpers\Response;
 use app\models\UsersModel;
 use app\rest\Action;
+use GuzzleHttp\Exception\BadResponseException;
 use Yii;
 use yii\base\Model;
 use yii\web\ServerErrorHttpException;
@@ -45,11 +46,17 @@ class AsistenciaCanceladaAction extends Action
         // $requestParams = Yii::$app->getRequest()->getBodyParams();
         $requestParams = Yii::$app->getRequest()->getQueryParams();
 
+        $email = $requestParams['email'];
+
+        if (!$email) {
+            throw new BadRequestHttpException("Parametro invalido", 400);
+        }
+
         $users = UsersModel::find()
-            ->where(['condition' => 1, 'id' => $requestParams['id']])
+            ->where(['condition' => 1, 'email' => $email])
             ->one();
         if (!$users) {
-            throw new BadRequestHttpException("No existe usuarios");
+            throw new BadRequestHttpException("No existe usuario");
         }
 
         $users->sent = 0;

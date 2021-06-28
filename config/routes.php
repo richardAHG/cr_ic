@@ -10,7 +10,7 @@ return [
         'extraPatterns' => [
             'GET proximos-eventos' => 'proximosEventos',
             'GET consultar-participacion' => 'consultarParticipacion',
-            'GET asistencia-cancelada/{id}' => 'asistenciaCancelada',
+            'GET asistencia-cancelada' => 'asistenciaCancelada',
             'GET asistencia-confirmada' => 'asistenciaConfirmada',
         ],
     ],

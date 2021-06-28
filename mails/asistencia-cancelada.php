@@ -160,7 +160,7 @@
                                                               "><span style="
                                                                   color: #b33828;
                                                                 ">
-                                                                                                                                    no podra asistir a los eventos </span>
+                                                                                                                                    Experamos verlo(a) pronto </span>
                                                                                                                             </span>
                                                                                                                         </div>
                                                                                                                     </td>
