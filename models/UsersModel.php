@@ -34,7 +34,7 @@ class UsersModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'last_name', 'email', 'token'], 'required'],
+            [['name', 'last_name', 'email'], 'required'],
             [['nationality_id', 'condition', 'sent'], 'integer'],
             [['token'], 'string'],
             [['name', 'last_name', 'email', 'photo'], 'string', 'max' => 80],
