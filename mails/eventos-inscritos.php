@@ -162,7 +162,7 @@
                                                               "><span style="
                                                                   color: #b33828;
                                                                 ">
-                                                                                                                                    Listado de conferencias agendadas </span>
+                                                                                                                                    Listado de <?= $params['msgEmail']; ?> </span>
                                                                                                                             </span>
                                                                                                                         </div>
                                                                                                                     </td>
