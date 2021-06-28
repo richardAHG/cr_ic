@@ -63,7 +63,7 @@ class CreateAction extends Action
         $UniqueEvents = UserEventsQuery::eventUnique($requestParams);
 
         if (empty($UniqueEvents)) {
-            Response::JSON(201, 'Ya se encuentra registrado en estos eventos');    
+            Response::JSON(201, 'Ya se encuentra registrado en estos eventos');
         }
 
         $transaction = Yii::$app->db->beginTransaction();
@@ -85,7 +85,7 @@ class CreateAction extends Action
             $transaction->rollBack();
             throw $ex->getMessage();
         }
-        self::envioCorreo($user['email'], $user['name'], 'Eventos Inscritos', $user['token'], $requestParams['language']);
+        self::envioCorreo($user['email'], $user['name'], 'Conferencia agendada', $user['token'], $requestParams['language']);
         // return $model;
         Response::JSON(200, 'Datos insertados con exito');
     }
@@ -93,16 +93,21 @@ class CreateAction extends Action
     public static function envioCorreo($email, $nombreUsuairo, $subject, $token, $language)
     {
         $ids = EventsQuery::getEventsByUser($token);
-        
+
         $evento = EventsQuery::getEventById($ids);
-        
+
         $data = EventsQuery::getEventsByIds($evento);
         
+        if (count($data) > 1) {
+            $subject = 'Conferencias Agendadas';
+        }
+
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/eventos-inscritos',
             'nombreUsuario' => $nombreUsuairo,
-            'data' => $data
+            'data' => $data,
+            'msgEmail'=>$subject
         ];
         if ($language == Constants::LANGUAGE_ES) {
             $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos.php", compact("params"));

@@ -162,7 +162,7 @@
                                                               "><span style="
                                                                   color: #b33828;
                                                                 ">
-                                                                                                                                    Listado de eventos inscritos </span>
+                                                                                                                                    Listado de conferencias agendadas </span>
                                                                                                                             </span>
                                                                                                                         </div>
                                                                                                                     </td>
