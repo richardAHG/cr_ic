@@ -99,7 +99,7 @@ class CreateAction extends Action
         $data = EventsQuery::getEventsByIds($evento);
         
         if (count($data) > 1) {
-            $subject = 'Conferencias Agendadas';
+            $subject = 'Conferencias agendadas';
         }
 
         $mail = new Mailer();
