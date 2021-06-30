@@ -61,5 +61,15 @@ return [
             'GET complete' => 'complete',
             'GET user' => 'byUser',
         ],
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
+        'controller' => [
+            'participant' => 'participants'
+        ],
+        'extraPatterns' => [
+            'POST {id}' => 'update_',
+        ],
     ]
 ];

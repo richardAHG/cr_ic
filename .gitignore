@@ -3,4 +3,4 @@ db.php
 assets/
 *.lock
 *.sql
-
+/media
