@@ -125,14 +125,14 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'e.id', 'e.title', 'e.title_en', 'e.description', 'e.`date`', 'e.city', 'e.type_id',
+                'e.id', 'e.title', 'e.title_en', 'e.description', 'e.date', 'e.city', 'e.type_id',
                 'e.date_string', 'e.date_string_en', 'e.date_string_large', 'e.date_string_large_en', 'p.name as type_event'
             ])
             ->from('events e')
             ->join(
                 'INNER JOIN',
                 'parameters p',
-                "p.value =e.type_id and p.`group` ='TYPE_MEET'"
+                "p.value =e.type_id and p.group ='TYPE_MEET'"
             )
             ->where(['e.condition' => 1])
             ->andWhere(['in', 'e.id', $ids])
@@ -144,14 +144,14 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'e.id', 'e.title', 'e.title_en', 'e.description', 'e.`date`', 'e.city', 'e.type_id',
+                'e.id', 'e.title', 'e.title_en', 'e.description', 'e.date', 'e.city', 'e.type_id',
                 'e.date_string', 'e.date_string_en', 'e.date_string_large', 'e.date_string_large_en', 'p.name as type_event'
             ])
             ->from('events e')
             ->join(
                 'INNER JOIN',
                 'parameters p',
-                "p.value =e.type_id and p.`group` ='TYPE_MEET'"
+                "p.value =e.type_id and p.group ='TYPE_MEET'"
             )
             ->where(['e.condition' => 1])
             ->orderBy(['e.date' => SORT_ASC])
@@ -170,7 +170,7 @@ class EventsQuery
             )
             ->join(
                 'INNER JOIN',
-                'file p',
+                'files f',
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
@@ -195,11 +195,11 @@ class EventsQuery
             ->join(
                 'INNER JOIN',
                 'parameters p2',
-                "p2.value =p.nationality_id and p2.`group` ='NATIONALITY'"
+                "p2.value =p.nationality_id and p2.group ='NATIONALITY'"
             )
             ->join(
                 'INNER JOIN',
-                'file p',
+                'files f',
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
@@ -219,7 +219,7 @@ class EventsQuery
             )
             ->join(
                 'INNER JOIN',
-                'file p',
+                'files f',
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
@@ -243,11 +243,11 @@ class EventsQuery
             ->join(
                 'INNER JOIN',
                 'parameters p2',
-                "p2.value =p.nationality_id and p2.`group` ='NATIONALITY'"
+                "p2.value =p.nationality_id and p2.group ='NATIONALITY'"
             )
             ->join(
                 'INNER JOIN',
-                'file p',
+                'files f',
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
