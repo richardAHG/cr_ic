@@ -2,6 +2,7 @@
 
 namespace app\models\query;
 
+use app\helpers\Constants;
 use app\models\EventsModel;
 use DateTime;
 use Yii;
@@ -156,19 +157,24 @@ class EventsQuery
             ->orderBy(['e.date' => SORT_ASC])
             ->all();
     }
-
+    
     public static function getModerator($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['u2.id', 'u2.name', 'photo'])
+            ->select(['p.id', 'p.name', 'photo_id',"substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
-                'users u2',
-                'em.participant_id =u2.id'
+                'participants p',
+                'em.participant_id =p.id and p.condition =1'
+            )
+            ->join(
+                'INNER JOIN',
+                'file p',
+                'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
-            ->andWhere(['em.event_id' => $event_id])
+            ->andWhere(['em.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_MODERATOR])
             ->all();
     }
 
@@ -176,59 +182,76 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'u2.id', 'u2.name', 'last_name', 'company', 'nationality_id', 'photo', 'position', 'position_en',
+                'p.id', 'p.name', 'last_name', 'company', 'nationality_id', 
+                "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
-                'users u2',
-                'em.participant_id =u2.id'
+                'participants p',
+                'em.participant_id =p.id'
             )
             ->join(
                 'INNER JOIN',
                 'parameters p2',
-                "p2.value =u2.nationality_id and p2.`group` ='NATIONALITY'"
+                "p2.value =p.nationality_id and p2.`group` ='NATIONALITY'"
+            )
+            ->join(
+                'INNER JOIN',
+                'file p',
+                'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
-            ->andWhere(['em.event_id' => $event_id])
+            ->andWhere(['em.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_MODERATOR])
             ->all();
     }
 
     public static function getSpeaker($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['u2.id', 'u2.name', 'photo'])
+            ->select(['p.id', 'p.name', 'photo_id',"substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
-                'users u2',
-                'es.participant_id =u2.id'
+                'participants p',
+                'es.participant_id =p.id'
+            )
+            ->join(
+                'INNER JOIN',
+                'file p',
+                'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
-            ->andWhere(['es.event_id' => $event_id])
+            ->andWhere(['es.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_SPEAKER])
             ->all();
     }
     public static function getSpeakerComplete($event_id)
     {
         return (new \yii\db\Query())
             ->select([
-                'u2.id', 'u2.name', 'last_name', 'company', 'nationality_id', 'photo', 'position', 'position_en',
+                'p.id', 'p.name', 'last_name', 'company', 'nationality_id', 
+                "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
-                'users u2',
-                'es.participant_id =u2.id'
+                'participants p',
+                'es.participant_id =p.id'
             )
             ->join(
                 'INNER JOIN',
                 'parameters p2',
-                "p2.value =u2.nationality_id and p2.`group` ='NATIONALITY'"
+                "p2.value =p.nationality_id and p2.`group` ='NATIONALITY'"
+            )
+            ->join(
+                'INNER JOIN',
+                'file p',
+                'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
-            ->andWhere(['es.event_id' => $event_id])
+            ->andWhere(['es.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_SPEAKER])
             ->all();
     }
     public static function getPresentations($event_id)
