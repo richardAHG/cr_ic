@@ -16,7 +16,7 @@ class EventsCustomModel extends EventsModel
     public function getSpeaker()
     {
         return (new \yii\db\Query())
-            ->select(['p.name', 'photo', 'type_id', 'p2.name as typepartipant'])
+            ->select(['p.name', 'photo_id', 'type_id', 'p2.name as typepartipant'])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
@@ -40,7 +40,7 @@ class EventsCustomModel extends EventsModel
     public function getModerator()
     {
         return (new \yii\db\Query())
-            ->select(['p.name', 'photo', 'type_id', 'p2.name as typepartipant'])
+            ->select(['p.name', 'photo_id', 'type_id', 'p2.name as typepartipant'])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
