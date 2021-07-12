@@ -19,6 +19,7 @@ use Yii;
  * @property string|null $date_string_en
  * @property string|null $date_string_large
  * @property string|null $date_string_large_en
+ * @property int $active
  */
 class EventsModel extends \yii\db\ActiveRecord
 {
@@ -39,7 +40,7 @@ class EventsModel extends \yii\db\ActiveRecord
             [['title', 'title_en', 'date', 'city', 'type_id'], 'required'],
             [['description'], 'string'],
             [['date'], 'safe'],
-            [['type_id', 'condition'], 'integer'],
+            [['type_id', 'condition', 'active'], 'integer'],
             [['title', 'title_en'], 'string', 'max' => 150],
             [['city', 'date_string_large', 'date_string_large_en'], 'string', 'max' => 100],
             [['date_string', 'date_string_en'], 'string', 'max' => 60],
@@ -64,6 +65,7 @@ class EventsModel extends \yii\db\ActiveRecord
             'date_string_en' => 'Date String En',
             'date_string_large' => 'Date String Large',
             'date_string_large_en' => 'Date String Large En',
+            'active' => 'Active',
         ];
     }
 }

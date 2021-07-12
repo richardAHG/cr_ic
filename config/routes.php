@@ -61,6 +61,7 @@ return [
             'GET complete' => 'complete',
             'GET user' => 'byUser',
             'POST view' => 'eviews',
+            'PUT {id}/active' => 'eactive',
         ],
     ],
     [
