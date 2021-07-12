@@ -24,6 +24,11 @@ class EventsController extends ActiveController
             'modelClass' => 'app\models\EventsModel'
         ];
 
+        $actions['eviews'] = [
+            'class' => 'app\controllers\event\EventwiewsAction',
+            'modelClass' => 'app\models\EventViewModel'
+        ];
+
         return $actions;
     }
 }

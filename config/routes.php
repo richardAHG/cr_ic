@@ -60,6 +60,7 @@ return [
         'extraPatterns' => [
             'GET complete' => 'complete',
             'GET user' => 'byUser',
+            'POST view' => 'eviews',
         ],
     ],
     [
