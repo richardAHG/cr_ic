@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $user_id
+ * @property int $event_id
  * @property string $date_
  * @property string $hour_
  * @property int|null $type_hour
@@ -30,8 +31,8 @@ class EventViewModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'date_', 'hour_'], 'required'],
-            [['user_id', 'type_hour', 'status'], 'integer'],
+            [['user_id', 'event_id', 'date_', 'hour_'], 'required'],
+            [['user_id', 'event_id', 'type_hour', 'status'], 'integer'],
             [['date_', 'hour_'], 'safe'],
         ];
     }
@@ -44,6 +45,7 @@ class EventViewModel extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
+            'event_id' => 'Event ID',
             'date_' => 'Date',
             'hour_' => 'Hour',
             'type_hour' => 'Type Hour',

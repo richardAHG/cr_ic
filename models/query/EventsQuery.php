@@ -157,11 +157,11 @@ class EventsQuery
             ->orderBy(['e.date' => SORT_ASC])
             ->all();
     }
-    
+
     public static function getModerator($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.id', 'p.name', 'photo_id',"substr(f.route,position('media/' in f.route)) as route"])
+            ->select(['p.id', 'p.name', 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
@@ -174,7 +174,7 @@ class EventsQuery
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
-            ->andWhere(['em.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_MODERATOR])
+            ->andWhere(['em.event_id' => $event_id, 'type_id' => Constants::PARTICIPANT_MODERATOR])
             ->all();
     }
 
@@ -182,7 +182,7 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'p.id', 'p.name', 'last_name', 'company', 'nationality_id', 
+                'p.id', 'p.name', 'last_name', 'company', 'nationality_id',
                 "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
@@ -203,14 +203,14 @@ class EventsQuery
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['em.condition' => 1])
-            ->andWhere(['em.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_MODERATOR])
+            ->andWhere(['em.event_id' => $event_id, 'type_id' => Constants::PARTICIPANT_MODERATOR])
             ->all();
     }
 
     public static function getSpeaker($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.id', 'p.name', 'photo_id',"substr(f.route,position('media/' in f.route)) as route"])
+            ->select(['p.id', 'p.name', 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
@@ -223,14 +223,14 @@ class EventsQuery
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
-            ->andWhere(['es.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_SPEAKER])
+            ->andWhere(['es.event_id' => $event_id, 'type_id' => Constants::PARTICIPANT_SPEAKER])
             ->all();
     }
     public static function getSpeakerComplete($event_id)
     {
         return (new \yii\db\Query())
             ->select([
-                'p.id', 'p.name', 'last_name', 'company', 'nationality_id', 
+                'p.id', 'p.name', 'last_name', 'company', 'nationality_id',
                 "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
@@ -251,7 +251,7 @@ class EventsQuery
                 'f.id =p.photo_id and f.status =1'
             )
             ->where(['es.condition' => 1])
-            ->andWhere(['es.event_id' => $event_id,'type_id'=>Constants::PARTICIPANT_SPEAKER])
+            ->andWhere(['es.event_id' => $event_id, 'type_id' => Constants::PARTICIPANT_SPEAKER])
             ->all();
     }
     public static function getPresentations($event_id)
@@ -281,5 +281,23 @@ class EventsQuery
         if (!empty($eventIncorrect)) {
             throw new BadRequestHttpException("Eventos enviados no existen en la Base de Datos,verificar datos");
         }
+    }
+
+    public static function getViewers()
+    {
+        return (new \yii\db\Query())
+            ->select(['ev.id', 'u.name', 'u.last_name', 'e.title', 'ev.date_', 'ev.hour_', 'ev.type_hour'])
+            ->from('event_view ev')
+            ->join(
+                'INNER JOIN',
+                'users u',
+                'ev.user_id = u.id'
+            )
+            ->join(
+                'INNER JOIN',
+                'events e',
+                'e.id =ev.event_id'
+            )
+            ->all();
     }
 }

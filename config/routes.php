@@ -62,6 +62,7 @@ return [
             'GET user' => 'byUser',
             'POST view' => 'eviews',
             'PUT {id}/active' => 'eactive',
+            'GET list-viewers' => 'elistviewers',
         ],
     ],
     [
