@@ -26,18 +26,14 @@ class ParticipantsCustomModel extends ParticipantsModel
 
     public function getEventsbySpeaker()
     {
-        $requestParams = Yii::$app->getRequest()->getQueryParams();
-
-        $eventIds = UsuarioQuery::getEventsBySpeaker($requestParams['id']);
+        $eventIds = UsuarioQuery::getEventsBySpeaker($this->id);
 
         $evento = EventsQuery::getEventById($eventIds);
         return EventsQuery::getEventsByIds($evento);
     }
     public function getEventsbyModerator()
     {
-        $requestParams = Yii::$app->getRequest()->getQueryParams();
-
-        $eventIds = UsuarioQuery::getEventsByModerator($requestParams['id']);
+        $eventIds = UsuarioQuery::getEventsByModerator($this->id);
 
         $evento = EventsQuery::getEventById($eventIds);
         return EventsQuery::getEventsByIds($evento);
