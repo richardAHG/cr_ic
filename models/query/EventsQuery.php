@@ -161,7 +161,7 @@ class EventsQuery
     public static function getModerator($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.id', "concat('p.name',' ','p.last_name') as name", 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
+            ->select(['p.id', "concat(p.name,' ',p.last_name) as name", 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_moderators em')
             ->join(
                 'INNER JOIN',
@@ -182,7 +182,7 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'p.id', "concat('p.name',' ','p.last_name') as name", 'last_name', 'company', 'nationality_id',
+                'p.id', "concat(p.name,' ',p.last_name) as name", 'last_name', 'company', 'nationality_id',
                 "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
@@ -210,7 +210,7 @@ class EventsQuery
     public static function getSpeaker($event_id)
     {
         return (new \yii\db\Query())
-            ->select(['p.id', "concat('p.name',' ','p.last_name') as name", 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
+            ->select(['p.id', "concat(p.name,' ',p.last_name) as name", 'photo_id', "substr(f.route,position('media/' in f.route)) as route"])
             ->from('events_speakers es')
             ->join(
                 'INNER JOIN',
@@ -230,7 +230,7 @@ class EventsQuery
     {
         return (new \yii\db\Query())
             ->select([
-                'p.id', "concat('p.name',' ','p.last_name') as name", 'last_name', 'company', 'nationality_id',
+                'p.id', "concat(p.name,' ',p.last_name) as name", 'last_name', 'company', 'nationality_id',
                 "substr(f.route,position('media/' in f.route)) as route", 'position', 'position_en',
                 'description', 'description_en', 'p2.name as nationality'
             ])
