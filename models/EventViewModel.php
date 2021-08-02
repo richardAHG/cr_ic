@@ -31,7 +31,7 @@ class EventViewModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'event_id', 'date_', 'hour_'], 'required'],
+            [['user_id', 'date_', 'hour_'], 'required'],
             [['user_id', 'event_id', 'type_hour', 'status'], 'integer'],
             [['date_', 'hour_'], 'safe'],
         ];
