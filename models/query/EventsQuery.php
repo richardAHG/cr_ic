@@ -294,7 +294,7 @@ class EventsQuery
                 'ev.user_id = u.id'
             )
             ->join(
-                'INNER JOIN',
+                'LEFT JOIN',
                 'events e',
                 'e.id =ev.event_id'
             )
