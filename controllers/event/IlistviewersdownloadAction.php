@@ -49,8 +49,9 @@ class IlistviewersdownloadAction extends Action
         // return EventsQuery::getViewers();
 
         try {
-            $structure = CsvUtil::getStructure();
-
+            // $structure = CsvUtil::getStructure();
+            $structure = EventsQuery::getViewers();
+            
             $data[] = $structure;
 
             $worksheet = CsvUtil::createSheet("CREDICORP");
