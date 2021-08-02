@@ -52,7 +52,7 @@ class IlistviewersdownloadAction extends Action
             $structure = ['name','last_name','title','date_','hour_','type_hour'];
             
             
-            $lista = EventsQuery::getViewers()();
+            $lista = EventsQuery::getViewers();
 
             $data[] = $structure;
             foreach ($lista as $key => $reg) {
