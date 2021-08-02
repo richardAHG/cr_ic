@@ -301,7 +301,7 @@ class EventsQuery
             ->join(
                 'INNER JOIN',
                 'parameters p',
-                "ev.type_hour =p.value and p.group='TYPE_HOUR' and p.status=1"
+                "ev.type_hour =p.value and p.group='TYPE_HOUR' and p.condition=1"
             )
             ->all();
     }
