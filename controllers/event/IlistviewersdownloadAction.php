@@ -49,12 +49,13 @@ class IlistviewersdownloadAction extends Action
         // return EventsQuery::getViewers();
 
         try {
+            $header = ['Nombre','Apellido','Evento','Fecha','Hora','Tipo'];
             $structure = ['name','last_name','title','date_','hour_','type_hour'];
             
             
             $lista = EventsQuery::getViewers();
 
-            $data[] = $structure;
+            $data[] = $header;
             foreach ($lista as $key => $reg) {
                 foreach ($structure as $item) {
                     if (in_array($item, $structure)) {
