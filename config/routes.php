@@ -63,6 +63,7 @@ return [
             'POST view' => 'eviews',
             'PUT {id}/active' => 'eactive',
             'GET list-viewers' => 'elistviewers',
+            'GET list-viewers/download' => 'elistviewdownload',
         ],
     ],
     [

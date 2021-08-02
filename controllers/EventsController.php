@@ -39,6 +39,10 @@ class EventsController extends ActiveController
             'modelClass' => 'app\models\EventViewModel'
         ];
 
+        $actions['elistviewdownload'] = [
+            'class' => 'app\controllers\event\IlistviewersdownloadAction',
+            'modelClass' => 'app\models\EventViewModel'
+        ];
         return $actions;
     }
 }
