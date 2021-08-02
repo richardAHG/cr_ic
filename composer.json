@@ -4,15 +4,14 @@
     "require": {
         "yiisoft/yii2": "2.0.41.1",
         "phpmailer/phpmailer": "^6.3",
-        "google/apiclient": "2.0"
+        "google/apiclient": "2.0",
+        "phpoffice/phpspreadsheet": "^1.12"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "^2.2"
     },
-    "authors": [
-        {
-            "name": "Richard Huáman Gómez",
-            "email": "richard21hg92@gmail.com"
-        }
-    ]
+    "authors": [{
+        "name": "Richard Huáman Gómez",
+        "email": "richard21hg92@gmail.com"
+    }]
 }
