@@ -49,10 +49,19 @@ class IlistviewersdownloadAction extends Action
         // return EventsQuery::getViewers();
 
         try {
-            // $structure = CsvUtil::getStructure();
-            $structure = EventsQuery::getViewers();
+            $structure = ['name','last_name','title','date_','hour_','type_hour'];
             
+            
+            $lista = EventsQuery::getViewers()();
+
             $data[] = $structure;
+            foreach ($lista as $key => $reg) {
+                foreach ($structure as $item) {
+                    if (in_array($item, $structure)) {
+                        $data[$key + 1][$item] = $reg[$item];
+                    }
+                }
+            }
 
             $worksheet = CsvUtil::createSheet("CREDICORP");
             $hoja = $worksheet->getActiveSheet();
@@ -63,8 +72,7 @@ class IlistviewersdownloadAction extends Action
 
             return ['ruta' => $sheet];
         } catch (\Exception $e) {
-            $this->_mensaje = $e->getMessage();
-            $this->_status = $e->getCode();
+            throw new $e->getMessage();
         }
 
     }
