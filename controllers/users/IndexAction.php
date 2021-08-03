@@ -39,22 +39,27 @@ class IndexAction extends Action
         /* @var $modelClass \yii\db\BaseActiveRecord */
         $modelClass = $this->modelClass;
 
-        $query = $modelClass::find()
-            ->select(['name', 'last_name', 'email'])
+        $data = $modelClass::find()
+            ->select(['name', 'last_name', 'email', 'sent'])
             ->andWhere([
-                "condition" => 1,
-                "sent" => 1
-            ]);
+                "condition" => 1
+                // "sent" => 1
+            ])->all();
 
-        return Yii::createObject([
-            'class' => ActiveDataProvider::className(),
-            'query' => $query,
-            'pagination' => [
-                'params' => $requestParams,
-            ],
-            'sort' => [
-                'params' => $requestParams,
-            ],
-        ]);
+        foreach ($data as $key => $value) {
+            $rpta = ($value['sent'] == 1 ? 'Si' : 'No');
+            $data[$key]['sent'] = $rpta;
+        }
+        return $data;
+        // return Yii::createObject([
+        //     'class' => ActiveDataProvider::className(),
+        //     'query' => $query,
+        //     'pagination' => [
+        //         'params' => $requestParams,
+        //     ],
+        //     'sort' => [
+        //         'params' => $requestParams,
+        //     ],
+        // ]);
     }
 }

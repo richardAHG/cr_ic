@@ -41,14 +41,17 @@ class IndexdowloadAction extends Action
         $modelClass = $this->modelClass;
 
         $query = $modelClass::find()
-            ->select(['name', 'last_name', 'email', 'sent', 'type_user'])
+            // ->select(['name', 'last_name', 'email', 'sent', 'type_user'])
+            ->select(['name', 'last_name', 'email', 'sent'])
             ->andWhere([
                 "condition" => 1
             ])->all();
 
         try {
-            $header = ['Nombre', 'Apellido', 'email', 'Acepto', 'Tipo'];
-            $structure = ['name', 'last_name', 'email', 'sent', 'type_user'];
+            // $header = ['Nombre', 'Apellido', 'email', 'Confirmación', 'Tipo'];
+            // $structure = ['name', 'last_name', 'email', 'sent', 'type_user'];
+            $header = ['Nombre', 'Apellido', 'email', 'Confirmación'];
+            $structure = ['name', 'last_name', 'email', 'sent'];
 
 
             $lista = $query;
