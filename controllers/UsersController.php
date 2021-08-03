@@ -32,7 +32,7 @@ class UsersController extends ActiveController
 
         $actions['download'] = [
             'class' => 'app\controllers\users\IndexdowloadAction',
-            'modelClass' => 'app\models\UserModel'
+            'modelClass' => 'app\models\UsersCustomModel'
         ];
 
         return $actions;
