@@ -58,14 +58,12 @@ class IndexdowloadAction extends Action
                 foreach ($structure as $item) {
                     if (in_array($item, $structure)) {
                         $data[$key + 1][$item] = $reg[$item];
+                        if ($item == 'sent') {
+                            $rpta = ($reg[$item] == 1 ? 'Si' : 'No');
+                            $data[$key + 1][$item] = $rpta;
+                        }
                     }
                 }
-            }
-
-            $arraySent = array_column($data, 'sent');
-            foreach ($arraySent as $key => $value) {
-                $rpta = $value == 1 ? 'Si' : 'No';
-                $data[$key]['sent'] = $rpta;
             }
 
             $worksheet = CsvUtil::createSheet("CREDICORP");
