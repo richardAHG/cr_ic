@@ -41,14 +41,14 @@ class IndexdowloadAction extends Action
         $modelClass = $this->modelClass;
 
         $query = $modelClass::find()
-            ->select(['name', 'last_name', 'email', 'sent','type_user'])
+            ->select(['name', 'last_name', 'email', 'sent', 'type_user'])
             ->andWhere([
                 "condition" => 1
             ])->all();
 
         try {
-            $header = ['Nombre', 'Apellido', 'email', 'Acepto','Tipo'];
-            $structure = ['name', 'last_name', 'email', 'sent','type_user'];
+            $header = ['Nombre', 'Apellido', 'email', 'Acepto', 'Tipo'];
+            $structure = ['name', 'last_name', 'email', 'sent', 'type_user'];
 
 
             $lista = $query;
@@ -60,6 +60,12 @@ class IndexdowloadAction extends Action
                         $data[$key + 1][$item] = $reg[$item];
                     }
                 }
+            }
+
+            $arraySent = array_column($data, 'sent');
+            foreach ($arraySent as $key => $value) {
+                $rpta = $value == 1 ? 'Si' : 'No';
+                $data[$key]['sent'] = $rpta;
             }
 
             $worksheet = CsvUtil::createSheet("CREDICORP");
