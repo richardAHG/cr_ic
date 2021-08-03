@@ -78,7 +78,7 @@ class IndexdowloadAction extends Action
 
             CsvUtil::writeSheet($hoja, $data);
 
-            $sheet = CsvUtil::saveSheet($worksheet, 'descarga_plantilla');
+            $sheet = CsvUtil::saveSheet($worksheet, 'listado_usuarios');
 
             return ['ruta' => $sheet];
         } catch (\Exception $e) {
