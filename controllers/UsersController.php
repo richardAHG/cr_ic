@@ -30,6 +30,11 @@ class UsersController extends ActiveController
             'modelClass' => 'app\models\UserEventsModel'
         ];
 
+        $actions['download'] = [
+            'class' => 'app\controllers\users\IndexdowloadAction',
+            'modelClass' => 'app\models\UserModel'
+        ];
+
         return $actions;
     }
 }
