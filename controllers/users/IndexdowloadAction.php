@@ -62,6 +62,10 @@ class IndexdowloadAction extends Action
                             $rpta = ($reg[$item] == 1 ? 'Si' : 'No');
                             $data[$key + 1][$item] = $rpta;
                         }
+                        if ($item == 'type_user') {
+                            $rpta = ($reg[$item] == 1 ? 'Interno' : 'Externo');
+                            $data[$key + 1][$item] = $rpta;
+                        }
                     }
                 }
             }
