@@ -74,7 +74,8 @@ class ParticipantsController extends ActiveController
             if (!empty($file)) {
                 $mfile = ParticipantsClass::obtener($id);
                 // print_r($mfile->photo_id);die();
-                ParticipantsQuery::loadFile($file, $mfile->photo_id);
+                $result = ParticipantsQuery::loadFile($file, $mfile->photo_id);
+                $params['photo_id'] = $result->id;
             }
 
             $id = ParticipantsClass::actualizar($params, $id);
