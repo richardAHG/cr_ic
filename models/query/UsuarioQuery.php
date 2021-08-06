@@ -51,14 +51,14 @@ class UsuarioQuery
     public static function getEventsBySpeaker($speaker_id)
     {
         $sql = "SELECT DISTINCT event_id from events_speakers es 
-                where participant_id =:speaker ";
+                where participant_id =:speaker and `condition` =1";
         return Yii::$app->db->createCommand($sql)->bindParam(':speaker', $speaker_id)->queryColumn();
     }
 
     public static function getEventsByModerator($moderator_id)
     {
         $sql = "SELECT DISTINCT event_id from events_moderators es 
-                where participant_id =:moderator_id ";
+                where participant_id =:moderator_id and `condition` =1";
         return Yii::$app->db->createCommand($sql)->bindParam(':moderator_id', $moderator_id)->queryColumn();
     }
 
