@@ -44,12 +44,8 @@ class CreateAction extends Action
         $model = new $this->modelClass([
             'scenario' => $this->scenario,
         ]);
-        $lang = Yii::$app->getRequest()->get('lang','');
+        
         $requestParams = Yii::$app->getRequest()->getBodyParams();
-
-        if (!$lang) {
-            throw new BadRequestHttpException("El parametro de idioma no puede estar vacio", 400);
-        }
 
         // validacion de nombre usuario y email unico
         $exists = UsuarioQuery::validateEmailDuplicate(
@@ -62,7 +58,7 @@ class CreateAction extends Action
             if (empty($user->token)) {
                 $token = Utils::generateToken();
                 $user->token = $token;
-                self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$lang);
+                self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$requestParams['lang']);
                 if (!$user->save()) {
                     throw new ServerErrorHttpException('Error al actualizar token');
                 }
@@ -81,7 +77,7 @@ class CreateAction extends Action
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$lang);
+        self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$requestParams['lang']);
         Response::JSON(200, "Usted se ha registrado correctamente", $model);
     }
 
