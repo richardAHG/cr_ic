@@ -2,6 +2,7 @@
 
 namespace app\controllers\email;
 
+use app\helpers\Constants;
 use app\helpers\Mailer;
 use app\helpers\Response;
 use app\models\UsersModel;
@@ -64,20 +65,25 @@ class AsistenciaCanceladaAction extends Action
             throw new BadRequestHttpException("Error al actualizar estado de envio de correo");
         }
 
-        self::envioCorreo($users['email'], $users['name'], 'Esperamos verlo(a) pronto');
+        self::envioCorreo($users['email'], $users['name'], 'Esperamos verlo(a) pronto',$requestParams['lang']);
 
         // return \Yii::$app->response->redirect('http://credicorpcapitalconference.web.app/noregister', 200)->send();
         Response::JSON(200, 'Correo enviado');
     }
 
-    public static function envioCorreo($email, $nombreUsuairo, $subject)
+    public static function envioCorreo($email, $nombreUsuairo, $subject,$lang)
     {
         $mail = new Mailer();
         $params = [
             "ruta" => 'www.investor-conference/asistencia-cancelada',
             'nombreUsuario' => $nombreUsuairo,
         ];
-        $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada.php", compact("params"));
+        if ($lang ==Constants::LANGUAGE_ES) {
+            $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada.php", compact("params"));    
+        }else{
+            $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada_en.php", compact("params"));
+        }
+        
         $mail->send($email, $subject, $body);
     }
 }

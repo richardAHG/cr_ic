@@ -11,6 +11,7 @@ use app\models\UsersModel;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;
+use yii\web\BadRequestHttpException;
 use yii\web\ServerErrorHttpException;
 
 /**
@@ -43,7 +44,13 @@ class CreateAction extends Action
         $model = new $this->modelClass([
             'scenario' => $this->scenario,
         ]);
+        $lang = Yii::$app->getRequest()->get('lang','');
         $requestParams = Yii::$app->getRequest()->getBodyParams();
+
+        if (!$lang) {
+            throw new BadRequestHttpException("El parametro de idioma no puede estar vacio", 400);
+        }
+
         // validacion de nombre usuario y email unico
         $exists = UsuarioQuery::validateEmailDuplicate(
             $requestParams['email']
@@ -55,7 +62,7 @@ class CreateAction extends Action
             if (empty($user->token)) {
                 $token = Utils::generateToken();
                 $user->token = $token;
-                self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia');
+                self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$lang);
                 if (!$user->save()) {
                     throw new ServerErrorHttpException('Error al actualizar token');
                 }
@@ -74,11 +81,11 @@ class CreateAction extends Action
         if (!$model->save()) {
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia');
+        self::envioCorreo($requestParams, 'Gracias por confirmar su asistencia',$lang);
         Response::JSON(200, "Usted se ha registrado correctamente", $model);
     }
 
-    public static function envioCorreo($params, $subject)
+    public static function envioCorreo($params, $subject,$lang)
     {
         $mail = new Mailer();
         $param = [
@@ -86,8 +93,11 @@ class CreateAction extends Action
             'nombreUsuario' => $params['name']
         ];
 
-        $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));
-
+        if ($lang == Constants::LANGUAGE_ES) {
+            $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));    
+        }else{
+            $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro_en.php", compact("param"));
+        }
         $mail->send($params['email'], $subject, $body);
     }
 }
