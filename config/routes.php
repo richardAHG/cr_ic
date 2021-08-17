@@ -62,10 +62,15 @@ return [
             'GET complete' => 'complete',
             'GET user' => 'byUser',
             'POST view' => 'eviews',
+            'PUT view/{idv}' => 'eviewsup',
             'PUT {id}/active' => 'eactive',
             'GET list-viewers' => 'elistviewers',
             'GET list-viewers/download' => 'elistviewdownload',
         ],
+        'tokens' => [
+            '{id}' => '<id:\\d+>',
+            '{idv}' => '<idv:\\d+>',
+        ]
     ],
     [
         'class' => 'yii\rest\UrlRule',

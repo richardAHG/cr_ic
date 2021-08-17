@@ -14,6 +14,7 @@ use Yii;
  * @property string $hour_
  * @property int|null $type_hour
  * @property int|null $status
+ * @property string $final_hour
  */
 class EventViewModel extends \yii\db\ActiveRecord
 {
@@ -33,7 +34,7 @@ class EventViewModel extends \yii\db\ActiveRecord
         return [
             [['user_id', 'date_', 'hour_'], 'required'],
             [['user_id', 'event_id', 'type_hour', 'status'], 'integer'],
-            [['date_', 'hour_'], 'safe'],
+            [['date_', 'hour_','final_hour'], 'safe'],
         ];
     }
 
@@ -50,6 +51,7 @@ class EventViewModel extends \yii\db\ActiveRecord
             'hour_' => 'Hour',
             'type_hour' => 'Type Hour',
             'status' => 'Status',
+            'final_hour' => 'Final Hour',
         ];
     }
 }

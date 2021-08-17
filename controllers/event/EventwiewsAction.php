@@ -48,14 +48,12 @@ class EventwiewsAction extends Action
         try {
             $model->load($requestParams, '');
             if (!$model->save()) {
-                print_r($model);
-                die();
                 throw new BadRequestHttpException('Error al registrar el evento');
             }
         } catch (Exception $e) {
             throw new $e->getMessage();
         }
 
-        return $model;
+        return $model->id;
     }
 }
