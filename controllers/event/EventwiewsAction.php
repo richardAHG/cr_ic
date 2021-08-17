@@ -54,6 +54,6 @@ class EventwiewsAction extends Action
             throw new $e->getMessage();
         }
 
-        return $model->id;
+        return ['status'=>200,'id'=>$model->id,'message'=>'Datos Registrados'];
     }
 }

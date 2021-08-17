@@ -2,9 +2,11 @@
 
 namespace app\controllers\event;
 
+use app\models\EventViewModel;
 use app\rest\Action;
 use Yii;
 use yii\base\Model;
+use yii\web\BadRequestHttpException;
 use yii\web\ServerErrorHttpException;
 
 /**
@@ -23,23 +25,21 @@ class EventwiewsupAction extends Action
      * @return \yii\db\ActiveRecordInterface the model being updated
      * @throws ServerErrorHttpException if there is any error when updating the model
      */
-    public function run($id)
+    public function run()
     {
-        /* @var $model ActiveRecord */
-        $model = $this->findModel($id);
-
-        if ($this->checkAccess) {
-            call_user_func($this->checkAccess, $this->id, $model);
-        }
+        $id = Yii::$app->getRequest()->get('id','');
         $requestParams = Yii::$app->getRequest()->getBodyParams();
 
-        $model->scenario = $this->scenario;
+        $model=EventViewModel::findOne(['id'=>$id,'status'=>1]);
+        if (!$model) {
+            throw new BadRequestHttpException("No se encuentra el registro solicitado", 400);
+        }
         
         $model->final_hour=$requestParams['final_hour'];
         if (!$model->save()) {
             throw new ServerErrorHttpException('Error al actualizar el evento visto');
         }
 
-        return $model;
+        return ['status'=>200,'id'=>$model->id,'message'=>'Datos actualizados'];
     }
 }
