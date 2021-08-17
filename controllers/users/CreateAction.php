@@ -88,10 +88,11 @@ class CreateAction extends Action
             "ruta" => 'www.investor-conference/eventos-inscritos',
             'nombreUsuario' => $params['name']
         ];
-
+        
         if ($lang == Constants::LANGUAGE_ES) {
             $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro.php", compact("param"));    
         }else{
+            $subject='Thank you for confirming your attendance';
             $body = Yii::$app->view->renderFile("{$mail->path}/confirmar-registro_en.php", compact("param"));
         }
         $mail->send($params['email'], $subject, $body);
