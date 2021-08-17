@@ -81,6 +81,7 @@ class AsistenciaCanceladaAction extends Action
         if ($lang ==Constants::LANGUAGE_ES) {
             $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada.php", compact("params"));    
         }else{
+            $subject='WE HOPE TO SEE YOU SOON';
             $body = Yii::$app->view->renderFile("{$mail->path}/asistencia-cancelada_en.php", compact("params"));
         }
         

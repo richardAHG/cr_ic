@@ -146,7 +146,7 @@
                                                                 line-height: 150%;
                                                                 color: #141c2e;
                                                                 font-weight: bold;
-                                                              ">Lo sentimos</span>
+                                                              ">we are sorry</span>
                                                                                                                         </div>
                                                                                                                         <div style="
                                                               line-height: 150%;
