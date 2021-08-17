@@ -62,7 +62,7 @@ return [
             'GET complete' => 'complete',
             'GET user' => 'byUser',
             'POST view' => 'eviews',
-            'PUT view/{idv}' => 'eviewsup',
+            'PUT view/{id}' => 'eviewsup',
             'PUT {id}/active' => 'eactive',
             'GET list-viewers' => 'elistviewers',
             'GET list-viewers/download' => 'elistviewdownload',
