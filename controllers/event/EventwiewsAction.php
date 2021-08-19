@@ -4,6 +4,7 @@ namespace app\controllers\event;
 
 use app\models\EventsModeratorsModel;
 use app\models\EventsSpeakersModel;
+use app\models\EventViewModel;
 use app\models\PresentationsModel;
 use app\rest\Action;
 use Yii;
@@ -46,14 +47,26 @@ class EventwiewsAction extends Action
         $requestParams = Yii::$app->getRequest()->getBodyParams();
 
         try {
-            $model->load($requestParams, '');
-            if (!$model->save()) {
-                throw new BadRequestHttpException('Error al registrar el evento');
+            if ($requestParams['id'] > 0) {
+                $exist = EventViewModel::find()
+                    ->where(['id' => $requestParams['id'], 'status' => 1])->one();
+                if ($exist) {
+                    $exist->final_hour = $requestParams['final_hour'];
+                    if (!$exist->save()) {
+                        throw new BadRequestHttpException("error al momento de actualzia rla hora de salida", 400);
+                    }
+                    return ['status' => 200, 'id' => $exist->id, 'message' => 'Datos actualizados'];            
+                }
+            } else {
+                $model->load($requestParams, '');
+                if (!$model->save()) {
+                    throw new BadRequestHttpException('Error al registrar el evento');
+                }
             }
         } catch (Exception $e) {
             throw new $e->getMessage();
         }
 
-        return ['status'=>200,'id'=>$model->id,'message'=>'Datos Registrados'];
+        return ['status' => 200, 'id' => $model->id, 'message' => 'Datos Registrados'];
     }
 }
