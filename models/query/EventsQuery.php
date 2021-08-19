@@ -286,7 +286,7 @@ class EventsQuery
     public static function getViewers()
     {
         return (new \yii\db\Query())
-            ->select(['ev.id', 'u.name', 'u.last_name', 'e.title', 'ev.date_', 'ev.hour_','p.name as type_hour'])
+            ->select(['ev.id', 'u.name', 'u.last_name', 'e.title', 'ev.date_', 'ev.hour_','p.name as type_hour','final_hour','u.email'])
             ->from('event_view ev')
             ->join(
                 'INNER JOIN',
