@@ -51,7 +51,7 @@ class EventwiewsAction extends Action
                 $exist = EventViewModel::find()
                     ->where(['id' => $requestParams['id'], 'status' => 1])->one();
                 if ($exist) {
-                    $exist->final_hour = $requestParams['final_hour'];
+                    $exist->final_hour = $requestParams['hour_'];
                     if (!$exist->save()) {
                         throw new BadRequestHttpException("error al momento de actualzia rla hora de salida", 400);
                     }
