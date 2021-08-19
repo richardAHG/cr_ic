@@ -49,8 +49,8 @@ class IlistviewersdownloadAction extends Action
         // return EventsQuery::getViewers();
 
         try {
-            $header = ['Nombre','Apellido','email','Evento','Fecha','Hora ingreso','Hora salida'];
-            $structure = ['name','last_name','email','title','date_','hour_','final_hour'];
+            $header = ['Nombre','Apellido','email','Fecha','Hora ingreso','Hora salida'];
+            $structure = ['name','last_name','email','date_','hour_','final_hour'];
             
             
             $lista = EventsQuery::getViewers();
