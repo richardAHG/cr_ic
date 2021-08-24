@@ -602,7 +602,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%201.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                        <img align="center" alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%201.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
 										
 										
                                     
@@ -668,7 +668,7 @@ Si aún no ha agendado las conferencias, le invitamos a hacerlo ingresando al si
 					
 					<tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
-                                <a class="mcnButton " title="Iniciar registro" href="https://credicorpcapitalconference.web.app/schedule" target="_blank" style="font-weight: bold;letter-spacing:0.5px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Agendar conferencias</a>
+                                <a class="mcnButton " title="Iniciar registro" href="https://www.credicorpcapitalconference.com/schedule" target="_blank" style="font-weight: bold;letter-spacing:0.5px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Agendar conferencias</a>
                             </td>
                         </tr>
 						
@@ -740,7 +740,7 @@ Si aún no ha agendado las conferencias, le invitamos a hacerlo ingresando al si
 						         <td class="mcnImageContent" valign="top" style="padding-right: 36px; padding-left:36px; padding-top: 25px; padding-bottom: 35px; ">
                                 
                                     
-									<img  alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%204.png" width="370" style="max-width:507px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+									<img  alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%204.png" width="370" style="max-width:507px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
 										
                                 
                             </td>
@@ -856,7 +856,7 @@ de la plataforma, por favor envíenos un correo electrónico a </span></span></s
                                 
                                     <a href="http://www.credicorpcapital.com" title="" class="" target="_blank">
                                         
-										<img align="center" alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%203.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+										<img align="center" alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%203.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
 										
 										
                                     </a>

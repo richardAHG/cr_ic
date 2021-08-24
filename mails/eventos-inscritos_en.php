@@ -951,7 +951,7 @@
                                                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
 
 
-                                                                <img align="center" alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%202.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                                                <img align="center" alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%202.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
 
 
                                                             </td>
@@ -1067,7 +1067,7 @@
 																		<tr>
 																		<tr>
 																			<td colspan='3'>
-																				<a href='https://credicorpcapitalconference.web.app/event-live'>Link</a>
+																				<a href='https://www.credicorpcapitalconference.com/event-live'>Link</a>
 																				<br><br>
 																			</td>
 																		</tr>
@@ -1109,7 +1109,7 @@
                                                             <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:left;">
 
 
-                                                                <img align="center" alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%205.png" width="370" style="max-width:507px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                                                <img align="center" alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%205.png" width="370" style="max-width:507px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                                                 <br><br><br>
 
                                                             </td>
@@ -1131,7 +1131,7 @@
                                                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
 
                                                                 <a href="http://www.credicorpcapital.com" title="" class="" target="_blank">
-                                                                    <img align="center" alt="" src="https://credicorpcapitalconference.web.app/assets/img/mails/Imagen%203.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                                                    <img align="center" alt="" src="https://www.credicorpcapitalconference.com/assets/img/mails/Imagen%203.png" width="600" style="max-width:900px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                                                 </a>
 
                                                             </td>
