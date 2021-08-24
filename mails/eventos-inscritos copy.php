@@ -1052,125 +1052,87 @@
 														</tr>
 
 
-														<!-- 2ra sesión -->
-														<tr>
-															<td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"><span style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#E96852"><strong>Panorama político en Colombia: ¿Los desarrollos recientes en la región nos dicen algo?</strong>&nbsp;</span><br>
-																	<span style="font-size:12px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#53565C">11:30 am PE | 12:30 pm&nbsp;NY | 01:30 pm CL </span></span></span><br>
-																</span>
-																<table style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																	<tr>
-																		<td width="95px" style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>Expositores</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>:</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Fernando Cepeda</td>
-
-																	<tr>
-																	<tr>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			Moderador
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			:
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Daniel Velandia</td>
-																	<tr>
-																	<tr>
-																		<td colspan="3">
-																			<a href="https://www.credicorpcapital.com/">Link</a>
-																			<br><br>
-																		</td>
-																	</tr>
-																</table>
+														<?php
+// $datetime = "2021-09-22 09:30:00";
+// $given = new DateTime($datetime, new DateTimeZone("America/Lima"));
+// $given->setTimezone(new DateTimeZone("America/New_York"));
+// $output = $given->format("Y-m-d H:i:s"); 
+// print_r($given);
+// echo ($output);
 
 
+// //$givenx = new DateTime($datetime, new DateTimeZone("America/Lima"));
+// $given->setTimezone(new DateTimeZone("America/Santiago"));
+// $outputx = $given->format("Y-m-d H:i:s"); 
+// print_r($given);
+// echo ($outputx);
 
-															</td>
-														</tr>
+														$speaker = [];
+														$moderator = [];
+														foreach ($params['data'] as $key => $row) {
+															foreach ($row['events'] as $value) {
+																foreach ($value['speaker'] as $item) {
+																	$speaker[] = $item['name'];
+																}
+																foreach ($value['moderator'] as $itemx) {
+																	$moderator[] = $itemx['name'];
+																}
+																$date = substr($value['date'], 11);
+																$hour = "Empiesza a las {$date} | Hora Lima";
+																$spek = implode(", ", $speaker);
+																$mod = implode(", ", $moderator);
 
-
-														<!-- 3ra sesión -->
-														<tr>
-															<td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"><span style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#E96852"><strong>Chile: Dos visiones de un mismo País.</strong>&nbsp;</span><br>
-																	<span style="font-size:12px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#53565C">2:00 pm PE | 3:00 pm&nbsp;NY | 4:00 pm CL </span></span></span><br>
-																</span>
-																<table style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																	<tr>
-																		<td width="95px" style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>Expositores</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>:</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Carlos Peña y Rodrigo Valdés</td>
-
-																	<tr>
-																	<tr>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			Moderador
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			:
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Hugo Horta</td>
-																	<tr>
-																	<tr>
-																		<td colspan="3">
-																			<a href="https://www.credicorpcapital.com/">Link</a>
-																			<br><br>
-																		</td>
-																	</tr>
-																</table>
-
-
-
-															</td>
-														</tr>
-
-
-
-														<!-- 4ta sesión -->
-
-														<tr>
-															<td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;"><span style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#E96852"><strong>Perú: Perspectivas económicas y de política monetaria en un contexto de alta incertidumbre.</strong>&nbsp;</span><br>
-																	<span style="font-size:12px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#53565C">4:00 pm PE | 5:00 pm&nbsp;NY | 6:00 pm CL </span></span></span><br>
-																</span>
-																<table style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																	<tr>
-																		<td width="95px" style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>Expositores</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			<strong>:</strong>
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Julio Velarde</td>
-
-																	<tr>
-																	<tr>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			Moderador
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-																			:
-																		</td>
-																		<td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">Daniel Velandia</td>
-																	<tr>
-																	<tr>
-																		<td colspan="3">
-																			<a href="https://www.credicorpcapital.com/">Link</a>
-																			<br><br>
-																		</td>
-																	</tr>
-																</table>
-
-
-
-															</td>
-														</tr>
-
-
+																echo "<tr>
+																<td valign='top' class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;'>
+																	<span style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif'>
+																		<span style='color:#E96852'>
+																			<strong>{$value['title']}</strong>
+																		</span><br>
+	
+																		<span style='font-size:12px'><span style='font-family:arial,helvetica neue,helvetica,sans-serif'><span style='color:#53565C'>
+																					09:30 am PE | 10:30 am&nbsp;NY | 11:30 am CL
+																				</span></span></span><br>
+	
+																	</span>
+	
+																	<table style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																		<tr>
+																			<td width='95px' style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				<strong>Expositores</strong>
+																			</td>
+																			<td style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				<strong>:</strong>
+																			</td>
+																			<td style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				{$spek}
+																			</td>
+	
+																		<tr>
+																		<tr>
+																			<td style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				Moderador
+																			</td>
+																			<td style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				:
+																			</td>
+																			<td style='font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top'>
+																				{$mod}
+																			</td>
+																		<tr>
+																		<tr>
+																			<td colspan='3'>
+																				<a href='https://credicorpcapitalconference.web.app/event-live'>Link</a>
+																				<br><br>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>";
+																$speaker = [];
+																$moderator = [];
+															}
+														}
+														?>
 
 
 														<!-- fin de seiones -->

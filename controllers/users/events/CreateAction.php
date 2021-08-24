@@ -112,6 +112,10 @@ class CreateAction extends Action
         if ($language == Constants::LANGUAGE_ES) {
             $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos.php", compact("params"));
         } else {
+            $subject = 'conference scheduled';
+            if (count($data) > 1) {
+                $subject = 'scheduled conferences';
+            }
             $body = Yii::$app->view->renderFile("{$mail->path}/eventos-inscritos_en.php", compact("params"));
         }
 
