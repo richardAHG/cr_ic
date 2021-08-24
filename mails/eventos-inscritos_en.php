@@ -1001,55 +1001,7 @@
 
                                                         <!-- 1ra sesión -->
 
-                                                        <tr>
-                                                            <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-                                                                <span style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif">
-                                                                    <span style="color:#E96852">
-                                                                        <strong>What are the greatest opportunities for Latin America?</strong>
-                                                                    </span><br>
-
-                                                                    <span style="font-size:12px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif"><span style="color:#53565C">
-                                                                                09:30 am PE | 10:30 am&nbsp;NY | 11:30 am CL
-                                                                            </span></span></span><br>
-
-                                                                </span>
-
-                                                                <table style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                    <tr>
-                                                                        <td width="80px" style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            <strong>Speakers</strong>
-                                                                        </td>
-                                                                        <td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            <strong>:</strong>
-                                                                        </td>
-                                                                        <td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            Michael Reid y Brian Winter
-                                                                        </td>
-
-                                                                    <tr>
-                                                                    <tr>
-                                                                        <td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            Moderator
-                                                                        </td>
-                                                                        <td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            :
-                                                                        </td>
-                                                                        <td style="font-size:16px; font-family:arial,helvetica neue,helvetica,sans-serif;color:#53565C; vertical-align:top">
-                                                                            Álvaro Correa
-                                                                        </td>
-                                                                    <tr>
-                                                                    <tr>
-                                                                        <td colspan="3">
-                                                                            <a href="https://www.credicorpcapital.com/">Link</a>
-                                                                            <br><br>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-
-
-
-                                                            </td>
-                                                        </tr>
+                                                       
 
                                                         <?php
                                                         $speaker = [];
@@ -1062,10 +1014,19 @@
                                                                 foreach ($value['moderator'] as $itemx) {
                                                                     $moderator[] = $itemx['name'];
                                                                 }
-                                                                $date = substr($value['date'], 11);
-                                                                $hour = "Empiesza a las {$date} | Hora Lima";
+                                                                // $date = substr($value['date'], 11);
+                                                                // $hour = "Empiesza a las {$date} | Hora Lima";
                                                                 $spek = implode(", ", $speaker);
                                                                 $mod = implode(", ", $moderator);
+
+                                                                $datetime = $value['date'];
+																$given = new DateTime($datetime, new DateTimeZone("America/Lima"));
+																$pe=$given->format('h:i a');
+																$given->setTimezone(new DateTimeZone("America/New_York"));
+																$ny = $given->format("h:i a");
+
+																$given->setTimezone(new DateTimeZone("America/Santiago"));
+																$ch = $given->format("h:i a");
 
                                                                 echo "<tr>
 																<td valign='top' class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;'>
@@ -1075,7 +1036,7 @@
 																		</span><br>
 	
 																		<span style='font-size:12px'><span style='font-family:arial,helvetica neue,helvetica,sans-serif'><span style='color:#53565C'>
-																					09:30 am PE | 10:30 am&nbsp;NY | 11:30 am CL
+                                                                                    {$pe} PE | {$ny} &nbsp;NY | {$ch} CL
 																				</span></span></span><br>
 	
 																	</span>
