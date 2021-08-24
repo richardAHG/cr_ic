@@ -889,7 +889,7 @@
     <!--<![endif]-->
     <!--*|END:IF|*-->
     <center>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="10vw" id="bodyTable">
             <tr>
                 <td align="center" valign="top" id="bodyCell">
                     <!-- BEGIN TEMPLATE // -->
