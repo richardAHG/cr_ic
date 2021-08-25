@@ -77,6 +77,7 @@ class CquestionAction extends Action
             $subject = 'Questions about the event';
             $body = Yii::$app->view->renderFile("{$mail->path}/preguntas_evento_en.php", compact("param"));
         }
-        $mail->send($params['email'], $subject, $body);
+        $email = 'richard@cuborojo.pe';
+        $mail->send($email, $subject, $body);
     }
 }
