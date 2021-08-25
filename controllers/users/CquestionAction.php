@@ -60,7 +60,7 @@ class CquestionAction extends Action
         }
         $requestParams['name'] = $exists->name;
         self::envioCorreo($requestParams, 'Preguntas sobre el evento', $requestParams['lang']);
-        Response::JSON(200, "Correo enviado con exito", $model);
+        Response::JSON(200, "Correo enviado con exito", '');
     }
 
     public static function envioCorreo($params, $subject, $lang)
