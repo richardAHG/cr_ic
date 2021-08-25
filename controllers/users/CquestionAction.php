@@ -48,7 +48,7 @@ class CquestionAction extends Action
         $requestParams = Yii::$app->getRequest()->getBodyParams();
 
         // validacion de nombre usuario y email unico
-        $exists = UsersModel::findOne(['token' => $requestParams['token'], 'status' => 1]);
+        $exists = UsersModel::findOne(['token' => $requestParams['token'], 'condition' => 1]);
         if (!$exists) {
             throw new BadRequestHttpException("El usuario no existe", 400);
         }
