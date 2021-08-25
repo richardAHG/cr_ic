@@ -52,7 +52,7 @@ class CquestionAction extends Action
         if (!$exists) {
             throw new BadRequestHttpException("El usuario no existe", 400);
         }
-        $requestParams['user_id']=$exists->id;
+        $requestParams['user_id'] = $exists->id;
         $model->load($requestParams, '');
         if (!$model->save()) {
 
@@ -78,7 +78,7 @@ class CquestionAction extends Action
             $subject = 'Questions about the event';
             $body = Yii::$app->view->renderFile("{$mail->path}/preguntas_evento_en.php", compact("param"));
         }
-        $email = 'richard@cuborojo.pe';
+        $email = 'contacto@credicorpcapitalconference.com';
         $mail->send($email, $subject, $body);
     }
 }
