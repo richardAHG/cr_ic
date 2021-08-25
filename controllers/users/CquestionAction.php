@@ -52,9 +52,10 @@ class CquestionAction extends Action
         if (!$exists) {
             throw new BadRequestHttpException("El usuario no existe", 400);
         }
-
+        $requestParams['user_id']=$exists->id;
         $model->load($requestParams, '');
         if (!$model->save()) {
+
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
         $requestParams['name'] = $exists->name;
