@@ -35,6 +35,11 @@ class UsersController extends ActiveController
             'modelClass' => 'app\models\custom\UsersCustomModel'
         ];
 
+        $actions['question'] = [
+            'class' => 'app\controllers\users\CquestionAction',
+            'modelClass' => 'app\models\UserQuestionModel'
+        ];
+
         return $actions;
     }
 }

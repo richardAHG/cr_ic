@@ -25,6 +25,7 @@ return [
             'POST save-event' => 'saveEvent',
             'POST validate-token' => 'validateToken',
             'GET download' => 'download',
+            'POST question' => 'question',
         ],
     ],
     [
