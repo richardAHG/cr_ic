@@ -79,7 +79,8 @@ class CquestionAction extends Action
             $body = Yii::$app->view->renderFile("{$mail->path}/preguntas_evento_en.php", compact("param"));
         }
         // $email = 'contacto@credicorpcapitalconference.com';
-        $email='fabio@cuborojo.pe';
+        $email = 'contacto@credicorpcapitalconference.com';
+        // $email = 'fabio@cuborojo.pe';
         $mail->send($email, $subject, $body);
     }
 }
