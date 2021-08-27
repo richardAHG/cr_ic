@@ -546,7 +546,7 @@
         <!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;"></span><!--<![endif]-->
         <!--*|END:IF|*-->
         <center>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="10vw" id="bodyTable">
                 <tr>
                     <td align="center" valign="top" id="bodyCell">
                         <!-- BEGIN TEMPLATE // -->
@@ -667,7 +667,7 @@
                     <tbody>
                           <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
-                                <a class="mcnButton " title="Iniciar registro" href="https://www.credicorpcapitalconference.com/" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Iniciar registro</a>
+                                <a class="mcnButton " title="Iniciar registro" href="https://www.credicorpcapitalconference.com/register?lang=es" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Iniciar registro</a>
                             </td>
                         </tr>
 						
